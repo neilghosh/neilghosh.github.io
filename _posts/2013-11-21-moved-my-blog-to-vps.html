@@ -1,0 +1,23 @@
+---
+layout: post
+title: Moved my blog to VPS
+date: '2013-11-21T03:56:00.000+05:30'
+author: Neil Ghosh
+tags:
+- Blog
+- wordpress
+- DigitalOcean
+- Linux
+- mysql
+- Apache
+- swap
+- memory
+- root
+- VPS
+- php
+modified_time: '2014-10-11T20:22:39.297+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-4785534638209857692
+blogger_orig_url: https://www.neilghosh.com/2013/11/moved-my-blog-to-vps.html
+---
+
+<p>Few months back I had <a title="Moving the blog again" href="http://www.neilghosh.com/2013/08/06/moving-the-blog-again/">moved my blog to Heroku</a>, now I wanted to try out VPS. Heroku was all good but updating every thing via Git commands was kind of a pain when there is a image upload or wordpress version upgrade. VPS is like renting virtual hardware and OS and getting full access to the same. I choose <a href="https://www.digitalocean.com/?refcode=e5b27e509c32">DigitalOcean</a> as they were very cheap and some of my friends gave good feedback about it. I choose the lowest plan that was 5 USD per month for a 512 MB ram. I got root access to the virtual machine and installed LAMP (Linux, Apache, MySQL and PHP) to host my PHP blog.</p><p>Blog ran all fine initially but soon I started getting the errors as MySQL kept shutting down automatically. So i had to login and start it manually. From error log and customer support I came to know that for tech stack I am running 512Mb may not be sufficient, so I decided to give it some swap space. Anyway DigitalOcean claims all its storage is SSD and those are supposed to be faster than HDD. Following are the commands for setting up swap.</p><blockquote><p>dd if=/dev/zero of=/swapfile bs=1M count=1024</p><p>mkswap /swapfile</p><p>swapon /swapfile</p><p># vi /etc/fstab</p><p>(add line /swapfile swap swap defaults 0 0)</p><p>swapon -s</p><p>free -k</p></blockquote><p>This reminded me late 90s linux installation when we had to allocate some space to swap partition in the hard disk apart from boot and root (most of the times in addition a partition containing Windows 98 :) ) . of course those days RAM used to be expensive.</p><p>The blog has been running fine after that, I will continue to monitor for few for days.</p><p>&nbsp;</p>

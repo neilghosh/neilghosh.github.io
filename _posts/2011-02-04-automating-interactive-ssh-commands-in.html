@@ -1,0 +1,23 @@
+---
+layout: post
+title: Automating interactive ssh commands in Linux
+date: '2011-02-04T22:53:00.000+05:30'
+author: Neil Ghosh
+tags:
+- Automate
+- Linux
+- TIP
+- Autoexpect
+- Prompt
+- Ubuntu
+- FTP
+- Interactive
+- Expect
+- shell
+- SSH
+modified_time: '2011-07-07T05:02:22.064+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-8577194926367564896
+blogger_orig_url: https://www.neilghosh.com/2011/02/automating-interactive-ssh-commands-in.html
+---
+
+<div id="_mcePaste">I ofter encountered problem while doing SSH to a remote server manually and giving the password when I am prompted for.</div><br/><div>I found a way to automate this process or any other interactive shell operation using <em>expect</em> utility.This can also be used while doing FTP to a remote server when you want to automate all the repeatable operations .</div><br/><div></div><br/><div>install <em>expect</em> and <em>autoexpect</em> from your in your linux machine (Ubuntu)</div><br/><div id="_mcePaste"></div><br/><blockquote><br/><div>sudo apt-get install expect</div><br/><div id="_mcePaste">sudo apt-get install expect-dev</div><br/><div id="_mcePaste"></div></blockquote><br/><div>Issue the usual command prefixed with autoexpect to generate myexp.exp file</div><br/><blockquote><br/><div id="_mcePaste">autoexpect -f myexp.exp ssh -l &lt;username&gt; &lt;hostname&gt;</div></blockquote><br/><div id="_mcePaste">Exit the shell immediately to stop recording and  open the file myexp.exp and remove everything after send command</div><br/><div>send -- "&lt;password&gt;\r"<br/>Append  "<span style="font-family:sans-serif;line-height:normal;font-size:12px;">interact" at the end so that interactive shell continues </span></div><br/><div></div><br/><div><span style="font-family:sans-serif;line-height:15px;font-size:12px;">Now issue the following command to automate the login process without being prompted for password</span></div><br/><blockquote><br/><div><em>expect myexp.exp</em></div></blockquote><br/><p class="bki-p" style="min-height:1px;margin:0 0 1em;padding:0;">one can also put it in .cshrc to set it as an alias to the login script.</p><br/><p class="bki-p" style="min-height:1px;margin:0 0 1em;padding:0;"><span style="font-family:sans-serif;line-height:15px;font-size:12px;">Reference<br/></span><span style="font-family:sans-serif;line-height:15px;font-size:12px;"><a class="bki-a" style="color:#000099;text-decoration:none;background-image:url('//stbeehive.oracle.com/teamcollab/20100712102804537/img/icons-sprite.png');background-attachment:initial;background-color:initial;padding-right:6px;margin-right:3px;padding-left:0;background-position:100% -27901px;background-repeat:no-repeat no-repeat;" href="http://blog.rackwire.com/2010/05/using-expect-and-autoexpect-to-automate-tasks-in-linux/" target="_blank">http://blog.rackwire.com/2010/05/using-expect-and-autoexpect-to-automate-tasks-in-linux/</a></span></p>

@@ -1,0 +1,21 @@
+---
+layout: post
+title: Installing Cyanogenmod 12 (Nightly) in Nexus 4
+date: '2015-03-28T17:00:00.002+05:30'
+author: Neil Ghosh
+tags:
+- Cyanogenmod
+- nexus 4
+- custom rom
+- ROM
+- Playstore
+- recovery mode
+- root
+- Android
+modified_time: '2015-03-28T17:00:29.768+05:30'
+thumbnail: http://3.bp.blogspot.com/-tgL06g5HcTo/VRaQjBIiQ2I/AAAAAAAAsmk/-8NLCd8HmQ0/s72-c/11087377_10152780464131305_1938496661_o.jpg
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-6137244797242074480
+blogger_orig_url: https://www.neilghosh.com/2015/03/installing-cyanogenmod-12-nightly-in.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><div>Today I decided to void my Nexus 4's warranty ! Probably it was out of warranty anyway. I had used Cyanogenmod earlier phones of mine and its simply awesome. For a long time I waited for a stable release of Cyanogenmod with Android Lollipop but none of the Cyanogenmod 12 build is <a href="https://download.cyanogenmod.org/?device=mako&amp;type=stable" target="_blank">stable</a> till now (as I type) for Nexus 4 (Mako). I lost my patience today and went for the recent <a href="https://download.cyanogenmod.org/?device=mako&amp;type=" target="_blank">nightly build</a>.<br /><br />Following were the steps <br /><ol style="text-align: left;"><a href="http://3.bp.blogspot.com/-tgL06g5HcTo/VRaQjBIiQ2I/AAAAAAAAsmk/-8NLCd8HmQ0/s1600/11087377_10152780464131305_1938496661_o.jpg" imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0" src="http://3.bp.blogspot.com/-tgL06g5HcTo/VRaQjBIiQ2I/AAAAAAAAsmk/-8NLCd8HmQ0/s1600/11087377_10152780464131305_1938496661_o.jpg" height="320" width="192" /></a><li>Download Cyanogenmod ROM <a href="https://download.cyanogenmod.org/?device=mako&amp;type=" target="_blank">zip file</a>.&nbsp;</li><li>Download the <a href="https://www.clockworkmod.com/rommanager" target="_blank">clockwork recovery</a>.</li><li>Download the <a href="http://developer.android.com/sdk/index.html" target="_blank">sdk tools for android.</a></li><li>Download <a href="https://basketbuild.com/gapps" target="_blank">gaaps</a>.&nbsp; </li><li>Make sure the sdk tools is in your PATH so that its accessible from command line.</li><li>Start your phone in recovery mode</li><ol><li>Turn off the phone</li><li>Hold the power and volume down button till some text appears on the screen</li><li>Install clockwork recovery <br /><blockquote><i>$ fastboot flash recovery recovery-clockwork-touch-6.0.4.7-mako.img</i></blockquote></li><li>Select recovery option </li></ol><li>Factory reset and wipe cache from the menu.</li><li>Choose "install from zip" option&nbsp;</li><li>Copy ROM file to the phone's SD card (or emulated directory)<br /><blockquote><i>adb push cm-12-20150327-NIGHTLY-mako.zip&nbsp; /data/media/ </i></blockquote>If you get "read only file system" error try using the following commands before copying <br /><blockquote class="tr_bq"><i>sudo adb devices </i>(to make sure device is connected)<i><br /></i><br /><i>sudo adb root (t</i>o make sure device is running on root access<i> )</i></blockquote></li><li>Install the ROM zip file. In case this does not work, you can side load it.<br /><blockquote><i>adb sideload cm-12-20150327-NIGHTLY-mako.zip </i></blockquote></li><li>Install gapps to get the Google Play Store and all you favorite apps there after.<br /><blockquote><i>adb sideload gapps-lp-20150222-signed.zip</i></blockquote></li><li>Reboot from recovery mode to boot into your fresh new Cyanogenmod.<br /><br /></li></ol></div>As usual its my duty to warn you that you must know what you are doing before rooting your phone and installing custom ROM. I or the ROM company will not be responsible for whatever sh** you do with your phone.<br /><div></div><br /><br /><div><br />So far the following stuff works for me which I was mostly worried about custom ROM<br /><ul style="text-align: left;"><li>Bluetooth (Playing music)</li><li>Audio&nbsp;</li><li>GPS</li></ul>Also the screenshot at the top is of lock screen while playing music. Notice the visualizer at the bottom. This is cool.<br /><br /></div></div>

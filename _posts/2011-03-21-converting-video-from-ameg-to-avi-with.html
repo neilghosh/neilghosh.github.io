@@ -1,0 +1,19 @@
+---
+layout: post
+title: Converting video from ameg to avi with ffmpeg
+date: '2011-03-21T01:31:00.000+05:30'
+author: Neil Ghosh
+tags:
+- mpg
+- TIP
+- ffmpeg
+- mpeg
+- avi
+- Video
+- convert
+modified_time: '2011-07-07T05:02:22.062+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-4991264128621425
+blogger_orig_url: https://www.neilghosh.com/2011/03/converting-video-from-ameg-to-avi-with.html
+---
+
+I have been using my Sony SCR SX 20 for quite a some time now. One of the the problem I see is that even though it does not record in High Definition (HD) , it consumes a lot of space.In fact for 22 Minutes of High Quality video it creates a .MPEG file with size 1.5 Gb. This is too large for uploading in any video sites like YouTube. I tried Linux GUI Tools like WinFF and Avidemux  but they elongated the video vertically and also sometimes conversion failed because of some library missing issue.<br/><br/>I found it can be done with ffmpeg and desired optimal quality can be achieved gaining some free space.<br/><br/>For best quality<br/><blockquote>ffmpeg -i 1.MPG -sameq 1.avi</blockquote><br/>For desired quality<br/><blockquote>ffmpeg -i infile.MPG -qmax 4 outfile.avi</blockquote><br/>Here the number 4 indicates that I need a moderate quality , higher the number lower is the quality and smaller is the output file size. You can hit and trial with a small file and choose your desired number. Same is applicable while converting MOV file to avi.<br/><br/>For Batch processing one can try<br/><blockquote>﻿﻿for f in *.MPG; do ffmpeg -i "$f" -qmax 4 "${f%.MPG}.avi"; done</blockquote>

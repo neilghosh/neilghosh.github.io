@@ -1,0 +1,20 @@
+---
+layout: post
+title: 'Downloading hi-resolution images from Google Photos using picasa web API in
+  python '
+date: '2015-02-14T16:42:00.000+05:30'
+author: Neil Ghosh
+tags:
+- Google Photos
+- storage
+- python
+- Quouta
+- backup.
+- Picasa
+- Picasaweb
+modified_time: '2015-02-14T16:51:50.313+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-8181849985644505447
+blogger_orig_url: https://www.neilghosh.com/2015/02/downloading-hi-resolution-images-from.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">Out of 15 GB quota given by Google for combined usage of Gmail, Picasaweb (now Google Plus Photos) and Google drive I had used up almost 98% of them.<br /><br />After cleaning up old and big emails which were not required&nbsp; (searched "size:10m" in gmail) I figured out there still a lot of space taken by Google Photos. I have moved on to Flickr recently for my high resolution photos because Google counts any photos which is more than 2048 pixels (either height or width) towards their storage quota. The only photo being stored in Google photos now a days are the ones which are automatically backed up from my phone. Earlier I had set it up to back up the full resolutions photos hence I ended up running out of storage quota very quickly.<br /><br />There is no straight forward way to filter Google Plus Photos by size and delete them. Also I wanted to download them before I permanently delete. I decided to do this programmatically as I did not find any tool online. <br /><script src="https://gist.github.com/neilghosh/78c0d3cdaf264d434d10.js"></script> <br />The below script basically scans a album (in my case the "Auto Backup" album ) for photos whose dimensions are more than 2048 and downloads them on the disk.<br /><br />There are few points to be noted before you use this script.<br /><ul style="text-align: left;"><li>Install Google Data python APIs from <a href="https://developers.google.com/picasa-web/?csw=1" target="_blank">this site</a>.</li><li>Keep increasing the "offset" variable if you think you have more than 1000 photos. This is because of the API limitation of being able to query only 1000 entries at a time.&nbsp; </li></ul></div>

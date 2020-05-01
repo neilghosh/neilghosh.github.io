@@ -1,0 +1,21 @@
+---
+layout: post
+title: setting up eclipse with github
+date: '2011-07-25T07:14:00.000+05:30'
+author: Neil Ghosh
+tags:
+- TIP
+- egit
+- source control
+- Open Source
+- repository
+- Git
+- Eclipse
+- github
+- Plugin
+modified_time: '2014-10-11T20:22:14.849+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-6885724343322732783
+blogger_orig_url: https://www.neilghosh.com/2011/07/setting-up-eclipse-with-github.html
+---
+
+For most of the project I use eclipse as it is very extendable with so many plugins but when I want to be lazy and let the IDE do everything I wish I use Netbeans (i.e at work :)). I wanted my <a href="http://neilghosh.com/2011/06/13/googly-my-first-firefox-add-on/" target="_blank">project </a>to be stored as repository at git and let eclipse handle all the source controlling jobs , so that I do not have to use shell or <a href="http://code.google.com/p/msysgit/downloads/list" target="_blank">git bash</a> for committing and pushing the local changed to remote  repository everytime. I managed to connect my repository in github to my eclipse project in the following way<br/><br/>1. Download and Install<a href="http://eclipse.org/egit/" target="_blank"> EGit eclipse plugin</a> into your eclipse.<br/><br/>2. Copy the HTTP url from your github project. <a href="http://help.github.com/create-a-repo/" target="_blank">Here</a>  is how to create a github repository<br/><br/><a href="http://neilghosh.com/blog/wp-content/uploads/2011/07/git-googly.jpg"><img class="aligncenter size-full wp-image-798" title="git-googly" src="http://neilghosh.com/blog/wp-content/uploads/2011/07/git-googly.jpg" alt="" width="718" height="426" /></a><br/><br/>3. In Eclipse click on File-&gt; Import and select "Projects from Git" under the the Git folder. On clicking next you might get a dialoge for Home environment variable not being set but you can ignore and click on OK.<br/><br/>4.Click on clone and paste the URL copied in step 2 and click next.<br/><br/>5. You will be asked for branch section, in my case I selected master and click next.<br/><br/>6.Then you will be asked to configure the local destination . You can give the a project directory iside your eclipse workspace.<br/><br/>7.Upon clicking next , You might get a message for master password recovery hint question.<br/><br/>8. Cancel the new project from git wizard and create a project from the existing source. Select the folder which we had given as the local destination in step 6.<br/><br/>9.Right click on the newly create project and click on "Team" -- &gt; "Share Project". You can ignore the home environment variable dialog again and  select "git" in the share project window.<br/><br/>10.click next and check the "use or create repository in the parent folder of project" checkbox. Check the newly create git repository folder and click finish.<br/><br/><a href="http://neilghosh.com/blog/wp-content/uploads/2011/07/configure-git.jpg"><img class="aligncenter size-full wp-image-799" title="configure-git" src="http://neilghosh.com/blog/wp-content/uploads/2011/07/configure-git.jpg" alt="" width="580" height="374" /></a><br/><br/>11. Now you will see the project folder icon is changed and small yellow cylinder icon has appeared next to all files and folder in the hierarchy of  the project which denotes that these are now version controlled.<br/><br/><strong>Source control operations from Eclipse</strong><br/><br/>After code changes you can right  click on any file or folder in the project hierarchy and click  " Team --&gt; Commit " to commit the changes locally and finally right click on the project node and "Team -&gt; Push to Upstream" for pushing the changes to the github server(remote)  repository<br/><br/>More documentation can be found at the <a href="http://wiki.eclipse.org/EGit/User_Guide" target="_blank">EGit Documentation</a> page. Also see <a href="http://help.github.com/win-set-up-git/" target="_blank">setting up the Git</a>

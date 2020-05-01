@@ -1,0 +1,17 @@
+---
+layout: post
+title: Mounting Windows folder in Ubuntu running inside Oracle VirtualBox
+date: '2010-09-26T00:38:00.000+05:30'
+author: Neil Ghosh
+tags:
+- TIP
+- Virtual Machine
+- Oracle
+- Free
+- VitualBox
+modified_time: '2011-07-07T05:02:22.069+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-6800408641227601331
+blogger_orig_url: https://www.neilghosh.com/2010/09/mounting-windows-folder-in-ubuntu.html
+---
+
+<p>I have been using Free <a href="http://dlc.sun.com/virtualbox/vboxdownload.html" target="_blank">Oracle Virtual Box</a> since quite a while and I take back up of the hard disk file (Lucid Lynx.vdi) regularly so that I don’t loose any installation and configuration I have done in Ubuntu in case of any OS crash.</p>  <p>Host OS :- Windows XP</p>  <p>Guest OS :- Ubuntu 10.04</p>  <p>1.Install <a href="http://forums.virtualbox.org/viewtopic.php?t=15679">the Guest Additions</a>. (Make sure from command line that its successful )</p>  <p>2.Share a windows folder at Settings –&gt; “Shared folders ”&#160; -&gt; Add machine folder eg.&#160; “dev”&#160; as name and&#160; path D:\dev</p>  <p>3.Boot the guest OS and go to terminal </p>  <p>4 make folder to be the destination of the mount mkdir ~host</p>  <p>5. sudo mount -t vboxsf dev ~/host</p>  <p>6.For mounting automatically everytime you boot add the above line at /etc/rc.local</p>  <p>Now the folder ~host gives me access to all the contents of D:\dev directory in windows drive.</p>  <p>Courtesy <a title="http://forums.virtualbox.org/viewtopic.php?t=15868" href="http://forums.virtualbox.org/viewtopic.php?t=15868">http://forums.virtualbox.org/viewtopic.php?t=15868</a></p>  <p>You can follow them <a title="http://twitter.com/virtualbox" href="http://twitter.com/virtualbox">http://twitter.com/virtualbox</a>&#160; <br />and If you see problems feel free to ask at <a title="http://forums.virtualbox.org/index.php" href="http://forums.virtualbox.org/index.php">http://forums.virtualbox.org/index.php</a></p>

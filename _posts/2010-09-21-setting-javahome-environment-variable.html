@@ -1,0 +1,18 @@
+---
+layout: post
+title: Setting JAVA_HOME Environment variable in Ubuntu
+date: '2010-09-21T23:52:00.000+05:30'
+author: Neil Ghosh
+tags:
+- TIP
+- environment variable
+- java home
+- Ubuntu
+- jdk
+- Code
+modified_time: '2011-07-07T05:02:22.070+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-5397975300131185113
+blogger_orig_url: https://www.neilghosh.com/2010/09/setting-javahome-environment-variable.html
+---
+
+I know this is a very tiny problem but we often tend to forget and start googling till we find an working example<br/><br/>We can use the following to set the $JAVA_HOME environment variable on an Ubuntu Linux system where there is no specific JDK installation  directory and we want to point it to the default JDK location.This happens when JDK is installed from update manager.<br/><br/>export JAVA_HOME=/usr/lib/jvm/default-java<br/><br/>This entry can be made in the file ~/.bashrc to have it executed every time we log in and set the env variable automatically from the next log in onwards.

@@ -1,0 +1,17 @@
+---
+layout: post
+title: Recursively find list of files in a directory in Python 2.2
+date: '2013-03-08T17:04:00.000+05:30'
+author: Neil Ghosh
+tags:
+- Python 2.2
+- File System
+- recursive
+- shell script
+- Code
+modified_time: '2014-10-11T20:22:38.167+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-8104720993896082474
+blogger_orig_url: https://www.neilghosh.com/2013/03/recursively-find-list-of-files-in.html
+---
+
+I have been using python for writing small utility programs. Till now I avoided scripting languages like python because I though shell script is master of everything and works in any linux computer. They also have all programming constructs like loops and conditions etc. However when it came to quickly get some work done, shell script too a lot of time write a error free program. Finally I jumped to python to do some file batch processing.<br/><br/>The most fundamental need to batch file processing is to iterate through all the files in a given directory. I could found several ways to do so using <strong>os.walk </strong>function but my old linux server had only Python 2.2 and I did not want to FTP files to my local PC to server back and fourth . So here is the code which also works in old version of python.<br/><br/>&nbsp;<br/>[code language="python"]<br/>import os<br/><br/># finds all the files in a directory recursively <br/>def listAll(dirName):<br/>    filelist1=[]<br/>    files = os.listdir(dirName)<br/>    for f in files:<br/>        if os.path.isfile(os.path.join(dirName,f)):<br/>            filelist1.append(os.path.join(dirName,f))<br/>        else:<br/>            newlist=listAll(os.path.join(dirName,f));<br/>            filelist1.extend(newlist)			<br/>    return filelist1 <br/># root directory path<br/>rootdir= '/home/'  <br/><br/>for f in listAll(rootdir):<br/>    print &quot;Absolute Path &quot; + os.path.abspath(f)<br/>    print &quot;File Name&quot;      + os.path.basename(f)<br/>    print &quot;Directory Path&quot; + os.path.dirname(f)<br/>    # Change directory <br/>    os.chdir(os.path.dirname(f))<br/>    # print current directory <br/>    os.system(&quot;pwd&quot;)<br/>    print os.getcwd()<br/>    # check file extension<br/>    if not ( f.endswith(&quot;.java&quot;) or or f.endswith(&quot;.xml&quot;)):<br/>        # Do nothing <br/>        continue<br/><br/><br/>[/code]

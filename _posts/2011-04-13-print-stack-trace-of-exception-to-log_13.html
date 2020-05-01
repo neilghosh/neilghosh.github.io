@@ -1,0 +1,16 @@
+---
+layout: post
+title: Print the Stack Trace of the Exception to log file
+date: '2011-04-13T18:51:00.001+05:30'
+author: Neil Ghosh
+tags:
+- TIP
+- Exception
+- Logging
+- java
+modified_time: '2014-10-11T20:22:14.371+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-7676662174515890207
+blogger_orig_url: https://www.neilghosh.com/2011/04/print-stack-trace-of-exception-to-log_13.html
+---
+
+In Java, when an Exception occurres , the following code snippent can be used to print it in a log file<br/><br/><pre><code><br/>import java.io.PrintWriter;<br/>import java.io.StringWriter;<br/>    public static String logStackTrace(Throwable t)<br/>    {<br/></code>         StringWriter sw = new StringWriter();<br/>         PrintWriter pw = new PrintWriter(sw, true);<br/>         exp.printStackTrace(pw);<br/>         pw.flush();<br/>         sw.flush();<br/>         nLog("exception  "+ sw.toString());<code><br/>    }<br/><br/></code>    public void nLog(String msg) {<br/>    try {<br/>        BufferedWriter out = new<br/>            BufferedWriter(new FileWriter("/home/temp/ex.log",true));<br/>        out.write(msg+"n");<br/>        out.close();<br/>        } catch (IOException e) {<br/>           e.printStackTrace();<br/>        }</pre>

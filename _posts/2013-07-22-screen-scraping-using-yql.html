@@ -1,0 +1,15 @@
+---
+layout: post
+title: Screen scraping using YQL
+date: '2013-07-22T02:54:00.000+05:30'
+author: Neil Ghosh
+tags:
+- screen scraping
+- Code
+- YQL
+modified_time: '2014-10-11T20:22:38.714+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-5419001500564365873
+blogger_orig_url: https://www.neilghosh.com/2013/07/screen-scraping-using-yql.html
+---
+
+I have been using <a title="Yahoo Pipes" href="http://pacific-wildwood-3863.herokuapp.com/2008/08/17/yahoo-pipes/">Yahoo pipes</a> for a long time now. I have done some screen scraping mash up using them. While yahoo pipe provides a component to fetch the HTML content from a URL, it is bit difficult to cut a specific part because it totally relies on a string to match. I came across YQL console where I could write SQL like queries and fetch the HTML content of any URL. The best part was that it supports XPath expressions for selecting the exact node of the HTML to extract data. For example I write the following query to get the stock price from the web page<br/><br/>[code language="sql"]<br/>select *<br/>from html<br/>where url =&quot;http://getquote.icicidirect.com/NewSiteTrading/trading/equity/includes/trading_stock_quote.asp?Symbol=BSES&quot;<br/>and xpath='//td[p/text()=&quot;LAST TRADE PRICE&quot;]/following-sibling::td[2]/p'<br/>[/code]<br/><br/><a href="http://y.ahoo.it/YaaQQ" target="_blank">See above code running in YQL Console.</a><br/><br/>Similarly this query can be made little bit complex and parametrized for the stock symbol to form the appropriate url<br/><br/>[code language="sql"]<br/>select *<br/>from html<br/>where url in (<br/>    select url<br/>    from uritemplate<br/>    where template=&quot;http://getquote.icicidirect.com/NewSiteTrading/trading/equity/includes<br/>    /trading_stock_quote.asp?Symbol={item}&quot; and item=@item)<br/>and xpath='//td[p/text()=&quot;LAST TRADE PRICE&quot;]/following-sibling::td[2]/p | //td[p/text()=&quot;LAST TRADED TIME&quot;]/following-sibling::td[1]/p'<br/>[/code]<br/><br/><a href="http://y.ahoo.it/rwbm4" target="_blank">See the above code in YQL console.</a> However this will not directly run from the console. One could just create a query alias and pass the required query string like the following.<br/><br/><a href="http://query.yahooapis.com/v1/public/yql/neilghosh/liveQuote?item=INFTEC" target="_blank">http://query.yahooapis.com/v1/public/yql/neilghosh/liveQuote?item=INFTEC</a><br/><br/>This could have been done using the built in YQL component in the Yahoo Pipes itself but it would be an extra layer if you just need to get the required content from the HTML instead of having to play around any feed (for which Pipes is still the best choice). Of course there some limits/quota while using such YQL queries, which I need to explore in coming days.<br/><br/>For screen scraping I could directly use Google App Engine's URLFetch or curl in PHP servers but this would unnecessarily transfer the whole content consuming quota and leading to time lag.

@@ -1,0 +1,15 @@
+---
+layout: post
+title: How to change the default Google Desktop Data index folder
+date: '2010-03-09T06:46:00.000+05:30'
+author: Neil Ghosh
+tags:
+- Google Desktop
+- Google
+- Tips
+modified_time: '2011-07-07T05:02:22.076+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-5149125694983174838
+blogger_orig_url: https://www.neilghosh.com/2010/03/how-to-change-default-google-desktop.html
+---
+
+<p>Google desktop search uses a folder in which it stores its index files. This folder called “Google Desktop Data” is by default place in the “My Documents” folder of your pc. To me that’s not a logical place though as I only want to have files I actively use to be in the “Mt Documents” folders. Music, Video, Word-files and spreadsheets are fine, index files from a search tool are not.   <br />Unfortunately Google Desktop does not offer the ability to change the location of its index files. This is what you have to do if you want another location for the Google Desktop Data folder:</p>  <ul>   <li>1. Stop Google Desktop (Right-click the tray icon-&gt;Exit) </li>    <li>2. Move Google Desktop Data directory to the desired location. </li>    <li>3. Run regedit (go to start -&gt; Run… -&gt; regedit) </li>    <li>4. Locate HKEY_CURRENT_USER\Software\Google\Google Desktop\data_dir </li>    <li>5. Change its value to the location, chosen in step 2 </li>    <li>6. Start Google Desktop again </li> </ul>

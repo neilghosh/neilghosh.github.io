@@ -1,0 +1,13 @@
+---
+layout: post
+title: Increase VirtualBox disk size
+date: '2011-12-21T05:48:00.000+05:30'
+author: Neil Ghosh
+tags:
+- Oracle
+modified_time: '2014-10-11T20:22:15.757+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-6151034918843041115
+blogger_orig_url: https://www.neilghosh.com/2011/12/increase-virtualbox-disk-size.html
+---
+
+<strong>Problem</strong><br/><br/>Lately I have been working on the Mozilla Firefox 's Android Version <a href="https://wiki.mozilla.org/Android" target="_blank">Fennec</a>. And Linux was the most preferable place to setup the development environment. When I had created the VirtualBox Machine last year I never thought that  disk space requirement will grow more than 10 GB. While upgrading the Android SDK itself I ran out of space and as a work around I had to delete the older version of flatforms (Android-8 to Android-12). I needed only Android-13 and above. However while building it I faced shortage of disk space again and this time I had two choices , either tweak the existing virtual disk to increase the size or re-create the machine. re-creating machine is a costly option as I had to setup everything in that machine. This is why sometimes I believe virtual disk is better than native installation. At least if you take back up of the virtual disk and it will work for life long , even if you change the hardware.<br/><br/><strong>Solution</strong><br/>I took help of the <a href="https://forums.virtualbox.org/viewtopic.php?f=6&amp;t=46814" target="_blank">VirtualBox forum</a> and came to know about a solution as follows.<br/><br/><img class="alignnone" title="Gparted" src="https://forums.virtualbox.org/download/file.php?id=5671" alt="" width="1025" height="700" /><br/><br/>1.Resize the virtual disk<br/><br/>D:Program FilesOracleVirtualBox&gt;VBoxManage modifyhd D:VMUbuntuUbuntu.vdi -<br/>-resize 20480<br/>0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%<br/><br/>2.Download the Gparted <a href="http://gparted.sourceforge.net/">http://gparted.sourceforge.net/</a> ISO<br/>3.Add the ISO as Virtual DISK Boot from the it using the same machine in Virtual Box<br/>4.Resize the primary partition which is has low space and extend it to the unallocated space<br/>5.delete the swap and then extend the first partition and make sure to leave enough at the end to add the swap back.<br/><br/>Thats all.

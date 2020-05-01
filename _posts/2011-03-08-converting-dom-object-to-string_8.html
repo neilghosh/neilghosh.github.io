@@ -1,0 +1,15 @@
+---
+layout: post
+title: Converting DOM object to String
+date: '2011-03-08T22:24:00.001+05:30'
+author: Neil Ghosh
+tags:
+- DOM
+- XML
+- java
+modified_time: '2014-10-11T20:22:13.928+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-1003980258064073145
+blogger_orig_url: https://www.neilghosh.com/2011/03/converting-dom-object-to-string_8.html
+---
+
+Here is a piece of code to convert org.w3c.dom.Document object to string<br/><blockquote><em>Transformer transformer = TransformerFactory.newInstance().newTransformer();<br/>transformer.setOutputProperty(OutputKeys.INDENT, "yes");<br/>StreamResult result = new StreamResult(new StringWriter());<br/></em><em> DOMSource source = new DOMSource(doc);<br/>transformer.transform(source, result);<br/>String xmlString = result.getWriter().toString();</em></blockquote><br/>Following needs to be in the import<br/><blockquote><em>import javax.xml.transform.OutputKeys;<br/>import javax.xml.transform.Transformer;<br/>import javax.xml.transform.TransformerFactory;<br/>import javax.xml.transform.dom.DOMSource;<br/>import javax.xml.transform.stream.StreamResult;</em></blockquote>

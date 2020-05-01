@@ -1,0 +1,18 @@
+---
+layout: post
+title: Modularizing XSLT code (extract file name from path)
+date: '2012-08-21T02:58:00.000+05:30'
+author: Neil Ghosh
+tags:
+- XSLT
+- File Name
+- Template
+- Path
+- Function
+- Code
+modified_time: '2014-10-11T20:22:36.414+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-2908016421652082447
+blogger_orig_url: https://www.neilghosh.com/2012/08/modularizing-xslt-code-extract-file.html
+---
+
+Few days back I came across a requirement where I had to determine the name of a file given the absolute path. Had it been java or any other popular programming language I could just tokenize the path with the directory separator character ("/" or "") and taken the last token. However doing it in XSLT 1.0 was bit tricky. A recursive function (templates in case of XSLT 1.0 ) call was required."substring-after" function gives the part of the string after the first occurrence of a given delimiter.<br/><br/>[sourcecode language="xml"]<br/>&lt;xsl:template name=&quot;fileName&quot;&gt;<br/>&lt;xsl:param name=&quot;path&quot; /&gt;<br/>&lt;xsl:choose&gt;<br/>&lt;xsl:when test=&quot;contains($path,'')&quot;&gt;<br/>&lt;xsl:call-template name=&quot;fileName&quot;&gt;<br/>&lt;xsl:with-param name=&quot;path&quot; select=&quot;substring-after($path,'')&quot; /&gt;<br/>&lt;/xsl:call-template&gt;<br/>&lt;/xsl:when&gt;<br/>&lt;xsl:when test=&quot;contains($path,'/')&quot;&gt;<br/>&lt;xsl:call-template name=&quot;fileName&quot;&gt;<br/>&lt;xsl:with-param name=&quot;path&quot; select=&quot;substring-after($path,'/')&quot; /&gt;<br/>&lt;/xsl:call-template&gt;<br/>&lt;/xsl:when&gt;<br/>&lt;xsl:otherwise&gt;<br/>&lt;xsl:value-of select=&quot;$path&quot; /&gt;<br/>&lt;/xsl:otherwise&gt;<br/>&lt;/xsl:choose&gt;<br/>&lt;/xsl:template&gt;<br/><br/>[/sourcecode]<br/><br/><br/><br/>And to call above code , we have to write the following fragment <br/>[sourcecode language="xml"]<br/>&lt;xsl:call-template name=&quot;fileName&quot;&gt;<br/>&lt;xsl:with-param name=&quot;path&quot; select=&quot;D:codetest.txt&quot;/&gt;<br/>&lt;/xsl:call-template&gt;<br/>[/sourcecode]<br/><br/>If XMLT 2.0 is available the above job is much easier using <strong><code>base-uri()</code></strong>

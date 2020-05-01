@@ -1,0 +1,17 @@
+---
+layout: post
+title: Playing mp3 audio with JavaFx
+date: '2012-07-15T19:28:00.000+05:30'
+author: Neil Ghosh
+tags:
+- audio
+- mp3
+- sound
+- javaFx
+- java
+modified_time: '2014-10-11T20:22:35.996+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-645727464267770258
+blogger_orig_url: https://www.neilghosh.com/2012/07/playing-mp3-audio-with-javafx.html
+---
+
+Java had audio support since ages but there was no direct way play mp3 files in java.<br/><br/>Thanks to JavaFx , you can now directly play mp3 files from your program. In this way you can avoid storing .wave audio files which are huge in size.<br/><br/>In your JavaFx project you need to put the following lines of code<br/><blockquote><br/>import java.io.File;<br/>import javafx.scene.media.Media;<br/>import javafx.scene.media.MediaPlayer;<br/>String source = new File("audio.mp3").toURI().toString();<br/>Media media = null;<br/>media = new Media(source);<br/>MediaPlayer mediaPlayer = new MediaPlayer(media);<br/>mediaPlayer.play();</blockquote><br/>Note that this will play audio file from the current working directory. Usually the same directory where the above code file exists or the final executable jar directory. You can confirm the directory using the following code.<br/><blockquote>System.out.println(new File(".").getCanonicalPath());</blockquote><br/>There are many <a href="http://www.javaworld.com/jw-11-2000/jw-1103-mp3.html" target="_blank">other ways</a> to add mp3 capability to Java but I felt using JavaFx is the easiest way specially because of the fact that since the <a href="http://jdk7.java.net/archive/7u6-b19.html">JDK 7 update 6 </a>contains JavaFx 2.2 .

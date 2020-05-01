@@ -1,0 +1,19 @@
+---
+layout: post
+title: Recursively Find Hyperlinks In A Website
+date: '2013-08-17T00:37:00.000+05:30'
+author: Neil Ghosh
+tags:
+- website
+- screen-scrapping
+- python
+- wget
+- file type
+- Code
+- crawl
+modified_time: '2014-10-11T20:22:39.037+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-404635612652095905
+blogger_orig_url: https://www.neilghosh.com/2013/08/recursively-find-hyperlinks-in-website.html
+---
+
+I was trying to write a script to crawl a website and fetch all the hyper links pointing to all the a particular file type e.g. .pdf or .mp3. Somehow the following command did not work for me.<br/><blockquote>wget -r -A .pdf &lt;URL&gt;</blockquote><br/>It did not go recursively and download all PDF files. I may have to ask in  <a href="http://stackoverflow.com/questions/18274586/download-all-files-of-a-particular-type-from-a-website-using-wget" target="_blank">stackoverflow</a>.<br/><br/>Anyway I wrote my script in python and it worked well. At least for the site I was trying crawl. The following scripts give all the absolute URLs pointing to the desired type of files in the whole website. You may have to add few more strings in <em>excludeList</em> configuration variable to suite your target site else you have end up infinite loop.<br/><br/>[code language="python"]<br/>import re<br/>import urllib2<br/>import urllib<br/><br/>## Configurations<br/># The starting point<br/>baseURL = &lt;home page url&gt;<br/>maxLinks = 1000<br/>excludeList = [&quot;None&quot;,&quot;/&quot;,&quot;./&quot;,&quot;#top&quot;]<br/>fileType = &quot;.pdf&quot;<br/>outFile = &quot;links.txt&quot;<br/><br/>#Gloab list of links already visited , don't want to get into loop<br/>vlinks = []<br/>#This is where output is stored the list of files<br/>files = []<br/><br/># A recursive function which takes a url and adds the outpit links in the global<br/># output list.<br/><br/>def findFiles( baseURL ):<br/>    #URL encoding<br/>    baseURL = urllib.quote(baseURL, safe=&quot;/:=&amp;?#+!$,;'@()*[]&quot;)<br/>    print &quot;Scanning URL &quot;+baseURL<br/><br/>    #Check maximum number of links you want to store<br/>    print &quot;Number of link stored - &quot; + str(len(files))<br/>    if(len(files) &gt; maxLinks):<br/>        return<br/><br/>    # the current page<br/>    website = &quot;&quot;<br/>    try:<br/>        website = urllib2.urlopen(baseURL)<br/>    except urllib2.HTTPError, e:<br/>        print baseURL + &quot; NOT FOUND&quot;<br/>        return<br/>    # HTML content of the current page<br/>    html = website.read()<br/>    # fetch the anchor tags using regular expression from the html<br/>    # Beautifull Soup does it wonderfully in one go<br/>    links = re.findall('(?&lt;=href=[&quot;']).*?(?=[&quot;'])', html)<br/>    #<br/>    for link in links:<br/>        #print link<br/>        url = str(link)<br/>        # Found the file type, then store and move to the next link<br/>        if(url.endswith(fileType)):<br/>            print &quot;file link stored&quot; + url<br/>            files.append(url)<br/>            f = open(outFile, 'a')<br/>            f.write(url+&quot;n&quot;)<br/>            f.close<br/>            continue<br/>        # Exlude external links and self links , else it will keep looping<br/>        if not (url.startswith(&quot;http&quot;) or ( url in excludeList ) ):<br/>            #Build the absolute URL and show it !<br/>            print &quot;abs url = &quot; + baseURL.partition('?')[0].rpartition('/')[0]+&quot;/&quot;+url<br/>            absURL =  baseURL.partition('?')[0].rpartition('/')[0]+&quot;/&quot;+ url<br/>            #Do not revisit the URL<br/>            if not (absURL in vlinks):<br/>                vlinks.append(absURL)<br/>                findFiles(absURL)<br/>    return<br/><br/>#Finally call the function<br/>findFiles(baseURL)<br/>print files<br/>[/code]

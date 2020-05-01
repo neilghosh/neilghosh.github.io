@@ -1,0 +1,17 @@
+---
+layout: post
+title: Creating simple HTML5 slide presentation with impress.js
+date: '2012-11-03T01:03:00.000+05:30'
+author: Neil Ghosh
+tags:
+- Power Point
+- Presentation
+- Slides
+- Code
+- HTML5
+modified_time: '2014-10-11T20:22:37.087+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-8076253147192339842
+blogger_orig_url: https://www.neilghosh.com/2012/11/creating-simple-html5-slide.html
+---
+
+With the recent growth of HTML5 adaption, I have seen many people using HTML slides instead of traditional Power Point/Open Office presentation.<br/><br/>You can download the <a href="https://github.com/bartaz/impress.js/blob/master/js/impress.js" target="_blank">impress.js</a> and save in the "js" directory.<br/><br/>[sourcecode language="html"]<br/>&lt;html lang=&quot;en&quot;&gt;<br/>    &lt;head&gt;<br/>        &lt;title&gt;Impress Demo&lt;/title&gt;<br/>    &lt;/head&gt;<br/>    &lt;body&gt;<br/>        &lt;div id=&quot;impress&quot;&gt;<br/>            &lt;div class=&quot;step slide&quot; id=&quot;start&quot;&gt;<br/>                    &lt;p style='width:1000px;font-size:80px;<br/>                text-align:center'&gt;Creating Stunning Visualizations&lt;/p&gt;<br/>                &lt;p&gt;Impress.js &lt;/p&gt;<br/>                &lt;/div&gt;<br/><br/>            &lt;div class=&quot;step slide&quot; id=&quot;slide2&quot; data-x=&quot;-1200&quot; data-y=&quot;0&quot;&gt;<br/>                    &lt;p style='width:1000px;font-size:80px;'&gt;<br/>                First Slide Moves From Left To Right&lt;/p&gt;<br/>                &lt;p&gt;Impress.js &lt;/p&gt;<br/>                &lt;/div&gt;<br/>        &lt;/div&gt;<br/>        &lt;script type=&quot;text/javascript&quot; src=&quot;js/impress.js&quot;&gt;&lt;/script&gt;<br/>        &lt;script type=&quot;text/javascript&quot;&gt;impress().init();&lt;/script&gt;<br/>    &lt;/body&gt;<br/>&lt;/html&gt;<br/>[/sourcecode]<br/><br/>For more sophisticated slides can refer the code of <a href="http://bartaz.github.com/impress.js/#/bored" target="_blank">this page</a>.

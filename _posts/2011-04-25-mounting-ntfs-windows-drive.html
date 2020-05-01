@@ -1,0 +1,18 @@
+---
+layout: post
+title: Mounting NTFS (Windows) drive automatically in Ubuntu
+date: '2011-04-25T17:45:00.001+05:30'
+author: Neil Ghosh
+tags:
+- Linux
+- TIP
+- Ubuntu
+- automount
+- NTFS
+- Mount
+modified_time: '2011-07-08T15:46:34.935+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-8733684940495771504
+blogger_orig_url: https://www.neilghosh.com/2011/04/mounting-ntfs-windows-drive.html
+---
+
+Add the following line in you /etc/fstab file<br /><br />/dev/sda5   /media/Data        ntfs    defaults,umask=007,gid=46,noatime   0       0

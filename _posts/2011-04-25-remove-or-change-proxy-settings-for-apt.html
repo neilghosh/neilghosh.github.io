@@ -1,0 +1,18 @@
+---
+layout: post
+title: Remove or Change Proxy settings for apt in Ubuntu
+date: '2011-04-25T17:47:00.000+05:30'
+author: Neil Ghosh
+tags:
+- Linux
+- TIP
+- Ubuntu
+- http
+- apt
+- proxy
+modified_time: '2011-07-07T05:02:22.059+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-3361505836232270696
+blogger_orig_url: https://www.neilghosh.com/2011/04/remove-or-change-proxy-settings-for-apt.html
+---
+
+Remove proxy settings from apt?<br/>Try to edit your /etc/apt/apt.conf<br/>and change it to:<br/>Code:<br/><br/>Acquire::http::Proxy "false";

@@ -1,0 +1,19 @@
+---
+layout: post
+title: Handling Keyboard Sortcuts in JavaFx
+date: '2012-10-06T06:32:00.000+05:30'
+author: Neil Ghosh
+tags:
+- Keyboard
+- '2.0'
+- javaFx
+- Key
+- Code
+- java
+- Shortcut
+modified_time: '2014-10-11T20:22:36.896+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-3179524822600320078
+blogger_orig_url: https://www.neilghosh.com/2012/10/handling-keyboard-sortcuts-in-javafx.html
+---
+
+A lot of times you need to to assign some functionality to some keyboard shortcut like F5 or Ctrl+R  in your application. It can be done as follows<br/><br/>[java]<br/>scene.setOnKeyPressed(new EventHandler&amp;lt;KeyEvent&amp;gt;() {<br/> public void handle(final KeyEvent keyEvent) {<br/>   if (keyEvent.getCode() == KeyCode.F5) {<br/>    System.out.println(&quot;F5 pressed&quot;);<br/>    //Stop letting it do anything else<br/>    keyEvent.consume();<br/>   }<br/> }<br/>});<br/>[/java]<br/><br/>JavaFx also provides <a href="http://docs.oracle.com/javafx/2/api/javafx/scene/input/KeyCodeCombination.html" target="_blank"><code>KeyCodeCombination</code> API</a> for handling multiple key events.<br/><br/>[java]<br/>final KeyCombination keyComb1 = new KeyCodeCombination(KeyCode.R,<br/>                                    KeyCombination.CONTROL_DOWN);<br/>scene.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler&lt;KeyEvent&gt;() {<br/>                @Override<br/>                public void handle(KeyEvent event) {<br/>                    if (keyComb1.match(event)) {<br/>                        System.out.println(&quot;Ctrl+R pressed&quot;);<br/><br/>                    }<br/>                }<br/>            });<br/>[/java]

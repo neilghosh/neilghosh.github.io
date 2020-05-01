@@ -1,0 +1,17 @@
+---
+layout: post
+title: XSD editor in netbeans IDE 6.8
+date: '2010-06-04T21:55:00.001+05:30'
+author: Neil Ghosh
+tags:
+- XSD
+- XML
+- Code
+- Netbeans
+- java
+modified_time: '2014-10-11T20:12:47.120+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-7630409352007559484
+blogger_orig_url: https://www.neilghosh.com/2010/06/xsd-editor-in-netbeans-ide-68_4.html
+---
+
+<p>Recently I downloaded netbeans IDE from <a title="http://netbeans.org/" href="http://netbeans.org/">http://netbeans.org/</a> everything seemed to be working fine until I tried to validate my .xsd file in it.    <br />It showed me an error <em>“Cannot find the declaration of element 'xsd:schema'.”</em>&#160; even though my xsd file was valid and began with xsd tag </p>  <p>&#160;</p>  <p><img style="display:inline;margin-left:0;margin-right:0;" align="left" src="http://netbeans.org/images_www/v5/nb-logo2.gif" width="241" height="106" /></p>  <p> &lt;xsd:schema xmlns:xsd=http://www.w3.org/2001/XMLSchema   <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; targetNamespace=&quot;http://www.example.org/schema/test/v1&quot;     <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; xmlns:tns=&quot;http://www.example.org/schema/test/v1&quot;&#160; <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; elementFormDefault=&quot;qualified&quot;     <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; version=&quot;1.0&quot;&gt;&#160; <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;!—ommitted –&gt;&#160; <br /> &lt;/xsd:schema&gt;</p>  <p>&#160;</p>  <p>Finally I fixed this by downloading the XSD editor plugin from as follows</p>  <blockquote>   <p>1) Open &quot;Plugins&quot; dialog from “Tools” menu     <br />2) Go to &quot;Settings&quot; tab       <br />3) Add an update center:       <br />- Name: NetBeans Dev       <br />- URL:       <br /><a href="http://updates.netbeans.org/netbeans/updates/6.8/uc/m1/dev/catalog.xml.gz">http://updates.netbeans.org/netbeans/updates/6.8/uc/m1/dev/catalog.xml.gz</a>      <br />4) Wait for catalog to be downloaded       <br />5) Back to &quot;Available plugins&quot; tab       <br />6) Intall plugin called &quot;XML Schema and WSDL&quot;      <br /></p> </blockquote>  <p>Finally I could edit XSD files and validate with Source , Schema and Design view.</p>

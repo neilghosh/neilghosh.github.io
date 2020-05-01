@@ -1,0 +1,14 @@
+---
+layout: post
+title: Quick read files in Java (Scanner)
+date: '2011-04-03T02:46:00.000+05:30'
+author: Neil Ghosh
+tags:
+- Algorithms
+- Java
+modified_time: '2011-07-07T05:02:22.060+05:30'
+blogger_id: tag:blogger.com,1999:blog-6081677503074893817.post-4128566628273113758
+blogger_orig_url: https://www.neilghosh.com/2011/04/quick-read-files-in-java-scanner.html
+---
+
+According to me reading files in JAVA is bit more complex as compared to C or C++<br/><br/>I came across Java <a href="http://download.oracle.com/javase/1.5.0/docs/api/java/util/Scanner.html" target="_blank">Scanner API</a> (JDK 1.5 onwards ) which easier than than common ways how we read fie using java <a href="http://www.roseindia.net/java/beginners/java-read-file-line-by-line.shtml" target="_blank">line by line</a><br/>Here is the sample code<br/><blockquote>private static String quickReadFile(String inFileName) {<br/>String contents = null;<br/>try {<br/>Scanner scanner = new Scanner(new File(inFileName)).useDelimiter("\\Z");<br/>contents = scanner.next();<br/>//System.out.println(contents);<br/>scanner.close();<br/>} catch (FileNotFoundException ex) {<br/>Logger.getLogger(ParseTagged.class.getName()).log(Level.SEVERE, null, ex);<br/>}<br/>return contents;<br/>}</blockquote>
