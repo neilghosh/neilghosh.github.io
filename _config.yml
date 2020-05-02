@@ -23,7 +23,7 @@ email: neil.ghosh@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Knowledge has no value until it is practiced !
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.neilghosh.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: neilghosh
 github_username:  neilghosh
 
