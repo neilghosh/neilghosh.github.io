@@ -1,0 +1,93 @@
+Google Cloud Build lets you automate your devops task by creating triggers in a code repo and perform certain task either
+following the ```Dockerfile``` or ```cloudbuild.yaml``` in the same repository.
+
+The trigger is invoked when there are changes detected in the code repo, This could be on a certain branch or just every
+time code is pushed in any branch. Continous Integration (CI) is a term usually used for the task where a deployable artifact
+like a jar/war or container image is created our of the codebase every time it changes. Various stages of CI can actually involve
+static code analysys like linting, runnig tests, code coverage. Sometimes after creating the deployable image one may choose to 
+actually deploy it in some non-prod environment like test environment to actually some high level black box tests like 
+integration test, functional tests and deployment tests. Each of these common type of tests probably can be explained in a different 
+post.
+
+For now lets see, how cloud build can be used to continously monitor the code repo and generate a docker image from a simple go based 
+application.
+
+We have a very simple go based micro service here.
+
+```
+git clone https://github.com/neilghosh/go-starter-service
+```
+
+Notice the ```Dockerfile```
+
+```
+FROM golang:1.14 as build
+WORKDIR /go/src/app
+COPY . .
+RUN go build -v -o /app .
+# Now copy it into our base image.
+FROM gcr.io/distroless/base
+COPY --from=build /app /app
+CMD ["/app"]
+EXPOSE 8080
+```
+
+Basically this build an image with binary created with ```go build``` and exposes the 8080 port. Once can test this locally by running 
+
+```
+docker run -p 8080:8080 .
+```
+
+In cloud build we can set the following configuration. Note we are using the option to use a Cloud Source repository mirrored from our actual github repository.
+
+![Cloud Build for CI](/assets/cloud-build-CI.jpg)
+
+Nowever time any code is checked in the master branch it triggers a build and docker image gets published to the Google Container Registry 
+
+![GCR](/assets/cloud-build-CI-gcr.jpg)
+
+## CD - Continous Deployment 
+
+This generally means given the deployable artifact is generated, we actually deploy it in a production environment. In our case 
+once we are satisfied with the Docker image that was pushed to the container registry we deploy it in a Cloud Run service.
+
+Since the service probably already exists we just deploy a new version and divert the traffic there.
+
+![Cloud Build for CD](/assets/cloud-build-CD.jpg)
+
+This time the build needs to be triggered manually like follows 
+
+```
+gcloud builds submit . --config cloudbuild.yaml --substitutions _IMGAGE_VERSION=<docker_file_tag>,SHORT_SHA=<unique_id>
+```
+Note that ```docker_file_tag``` is the tag of the docker image   registry we want  to deploy 
+```unique_id``` can be anything here because this would come from the git commit and used as part of Coud Run Deployment version 
+when automatically triggered via git push.
+
+or the ```cloudbuild.yaml``` needs to be updated with the desired docker image tag that we want to deploy.
+
+Our ```cloudbuild.yaml``` file should look like this.
+
+```
+steps:
+# Deploy an image from Container Registry to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'run'
+  - 'deploy'
+  - 'go-starter-service'
+  - '--image'
+  - 'gcr.io/$PROJECT_ID/github.com/neilghosh/go-starter-service:${_IMGAGE_VERSION}'
+  - '--region'
+  - 'us-central1'
+  - '--platform'
+  - 'managed'
+  - '--allow-unauthenticated'
+  - '--revision-suffix'
+  - '${SHORT_SHA}--${_IMGAGE_VERSION}'
+substitutions:
+    _IMGAGE_VERSION: latest
+```
+Finally once the CD buildis finished it would comes as a yet another version of the cloud run service.
+
+![Cloud Run Versions](/assets/cloud-run-versions.jpg)
