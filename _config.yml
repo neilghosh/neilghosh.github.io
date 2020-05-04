@@ -31,7 +31,7 @@ github_username:  neilghosh
 theme: minima
 plugins:
   - jekyll-feed
-
+google_analytics:  UA-5167155-1
 permalink: /:year/:month/:title.html
 
 # Exclude from processing.
