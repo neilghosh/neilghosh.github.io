@@ -42,7 +42,7 @@ before_install:
 
 The above configuration should by default run the `go test` in the project when you raise a pull request as checks.
 
-![travis-check.jpg]({{site.baseurl}}/assets/travis-check.jpg)
+![travis-check.jpg](/assets/travis-check.jpg)
 
 You can also embed the build status badge in your README file with the following snippet.
 
@@ -50,5 +50,5 @@ You can also embed the build status badge in your README file with the following
 [![Build Status](https://travis-ci.com/neilghosh/go-starter-service.svg?branch=master)](https://travis-ci.com/neilghosh/go-starter-service)
 ```
 
-![build-status.png]({{site.baseurl}}/assets/build-status.png)
+![build-status.png](/assets/build-status.png)
 
