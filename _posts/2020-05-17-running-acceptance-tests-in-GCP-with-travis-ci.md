@@ -1,6 +1,3 @@
----
-published: false
----
 ## Running Aacceptance Tests In GCP With Travis CI
 
 In the various stages of continous integration, its really important to run all the tests. Some of them are unit tests which can run without any dependency. However you may have acceptance tests or integration tests which can have dependency on databases and other 3rd party services.
