@@ -1,4 +1,5 @@
-## Running Aacceptance Tests In GCP With Travis CI
+![big_dipper.jpg](/assets/big_dipper.jpg)
+
 
 In the various stages of continous integration, its really important to run all the tests. Some of them are unit tests which can run without any dependency. However you may have acceptance tests or integration tests which can have dependency on databases and other 3rd party services.
 
@@ -34,7 +35,7 @@ env:
   - GOOGLE_APPLICATION_CREDENTIALS=demoneil-adc7162180c1.json
 before_install:
 - openssl aes-256-cbc -K $encrypted_4767c4c300b2_key -iv $encrypted_4767c4c300b2_iv
-  -in demoneil-adc7162180c1.json.enc -out demoneil-adc7162180c1.json -d
+  -in client-secret.json.enc -out client-secret.json -d
 ```
 
 The above configuration should by default run the `go test` in the project when you raise a pull request as checks.
