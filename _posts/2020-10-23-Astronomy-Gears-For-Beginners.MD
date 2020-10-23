@@ -26,7 +26,19 @@ Its really worth spending time getting ourselves familiarised with the sky befor
   - Polaris (The Pole Star)
     
 ### Apps & Charts
-There are so many free and cheap apps and 
+There are so many free and cheap apps and online charts available for easy reference for above objects and also the ones which are not easily recognizable. For example planets, although they are bright, they do not really stay at one place in the sky. So one has to track them using a chart or follow daily to instantly recognize which one is what. I have enough experience to distringuish the planets and bright stars based on their color and brightness but it took me long time.
+When I got computers for the first time, two decades ago, there were not many options. There were softwares like CyberSky and OpenUniverse which came wih some tech magazine CDs.
+
+Today there are many options.
+
+- Apps
+  - Stellaroums
+  - Sky Maps
+  - Heavens Above
+- Sites
+  - Heavens-Above.com
+  - [skymaps.com](http://skymaps.com/downloads.html)
+
 
 ### First Gears
 My one word answer at the beginning of the post was Binoculars. Yes this most affordable and easy to handle gear that most of us do not realise that we can see a lot of things without even a telescope. This is of course after we 
