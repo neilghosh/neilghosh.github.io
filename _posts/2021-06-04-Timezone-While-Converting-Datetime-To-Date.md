@@ -1,4 +1,5 @@
-The traditionally used `Java.util.Date` represents a specific moment of time like now(), or the moment I was born. It doesn't have any timezone it's just a point in the arrow of time. People may want to translate it to their convenient timezone i.e. if it's an evening at 7 PM in IST, it is also 1.30 PM in UTC. The moment of time does not change.
+The traditionally used `Java.util.Date` represents a specific moment of time like now(), or the moment I was born.
+It doesn't have any timezone it's just a point in the arrow of time. People may want to translate it to their convenient timezone i.e. if it's an evening at 7 PM in IST, it is also 1.30 PM in UTC. The moment of time does not change.
       
 The problem is when someone gives you a moment of time and asks you what date it is. By saying date the person is expecting something like "1st Jan 20202" or 2020-01-01 and don't care about time. If he would have given me "1st Jan 2020 evening 7 pm", I would have told him its "1st Jan 2020". 
       
