@@ -1,3 +1,8 @@
+---
+layout: post
+title: "Google Cloud Build In Cloud Run"
+description: ""
+---
 Google Cloud Build lets you automate your devops task by creating triggers in a code repo and perform certain task either
 following the ```Dockerfile``` or ```cloudbuild.yaml``` in the same repository.
 
