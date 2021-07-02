@@ -1,3 +1,9 @@
+---
+layout: post
+title: "Timezone Conversion Java"
+description: "Its becomes tricky when you are converting a timestamp to a date, especially between java.util.Date and say java.time.LocalDate"
+---
+
 The traditionally used `Java.util.Date` represents a specific moment of time like now(), or the moment I was born.
 It doesn't have any timezone it's just a point in the arrow of time. People may want to translate it to their convenient timezone i.e. if it's an evening at 7 PM in IST, it is also 1.30 PM in UTC. The moment of time does not change.
       

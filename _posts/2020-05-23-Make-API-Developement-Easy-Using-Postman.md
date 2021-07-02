@@ -1,3 +1,9 @@
+---
+layout: post
+title: "Make API Development faster Using Postman"
+description: ""
+---
+
 [Postman](https://www.postman.com/) is by far the most popular (discounting `curl`) API testing tool used by developers all over the world. There are other tools like [insomnia](https://insomnia.rest/) which also I really like but Postman ts probably the most complete and others have a lot to catch up.
 
 In addition to be merely able to do CRUD API calls like any other rest cients, it allowes Environments to actually save variables that can be used in multiple APIs and can have different values for deferent environments.

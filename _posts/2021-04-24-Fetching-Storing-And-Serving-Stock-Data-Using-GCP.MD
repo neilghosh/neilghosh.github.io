@@ -1,3 +1,8 @@
+---
+layout: post
+title: "Fetching, Storing and Serving Stock Data Using GCP"
+description: "Its becomes tricky when you are converting a timestamp to a date, especially between java.util.Date and say java.time.LocalDate"
+---
 Last few months I has been working on a demo project where I fetch data Stock Data in CSV (zipped) format periodically and store tham in Google Cloud. 
 This is a a good end to end use case where data can also be transferred between storage services automatically using serverless compute like 
 Google Cloud Functions in a event driven manner Cloud Pub/Sub. Following is the high level architecture the system.

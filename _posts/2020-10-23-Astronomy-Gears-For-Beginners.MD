@@ -1,3 +1,8 @@
+---
+layout: post
+title: "Astronomy gears for the beginners"
+description: ""
+---
 TL;TR Binoculars.
 <div align="center">
 <div class='pixels-photo'>
