@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Hosting PDF Conversion Tool In Google Cloud Run"
+title: "Deploying PDF Conversion Tool In Google Cloud Run"
 description: "Google Cloud Run is a great service to quickly deploy any containerized application. In this demo we will see how one can develope and deploy a PDF conversion tool which reduces size of scanned multi-page PDF file using ImageMagick"
 ---
 
