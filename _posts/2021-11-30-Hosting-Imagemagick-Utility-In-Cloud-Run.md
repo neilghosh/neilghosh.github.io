@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Hosting PDF Conversation Tool In Google Cloud Run"
+title: "Hosting PDF Conversion Tool In Google Cloud Run"
 description: "Google Cloud Run is a great service to quickly deploy any containerized application. In this demo we will see how one can develope and deploy a PDF conversion tool which reduces size of scanned multi-page PDF file using ImageMagick"
 ---
 
@@ -110,10 +110,10 @@ Finally after successful deployment it would give a fully qualifies URL where th
 curl -v -F "density=75" -F "foo=@input.pdf" https://pdf-tools-b3zzuedwgq-el.a.run.app/upload --output output.pdf
 ```
 
-**Note - Since image conversion is a relatively heavy process, when I tried the default Cloud Run deployment configuration and use it, I got insufficient memory error. So I has to edit the cloud run app to have 1GB of memory instead default 512Mb. 
+**Note - Since image conversion is a relatively heavy process, when I tried the default Cloud Run deployment configuration and use it, I got insufficient memory error. So I had to edit the cloud run app to have 1GB of memory instead default 512Mb. 
 
 ** Next, we would try to implement the following.
-- Make this synchronous 
-- Use Cloud Storage instead if ephemeral storage
+- Make this synchronous. 
+- Use Cloud Storage instead if ephemeral storage.
 - Expose more knobs to the use control the quality of the conversion i.e.  contrast level.
 
