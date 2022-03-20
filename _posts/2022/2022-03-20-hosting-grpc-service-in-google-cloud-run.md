@@ -14,7 +14,7 @@ In this article we will create a simple service which exposes a gRPC endpoint in
 
 First thing, we define the interface in which data is exchanged. So we create a proto file. Complete file [ping.proto](https://github.com/neilghosh/node-grpc/blob/master/protos/ping.proto). 
 
-This contains not just the message format (like a JSON contract of a REST service) but also the operations that is allowrd (like methods in a SOAP WSDL)
+This contains not just the message format (like a JSON contract of a REST service) but also the operations that is allowed (like methods in a SOAP WSDL)
 
 ```
 service PingServer {
@@ -28,7 +28,6 @@ message Ping {
 message Pong {
     string acknowledgement = 1;
 }
-
 ```
 Next we create the server. We create a main function that starts the gRPC server 
 
@@ -52,7 +51,6 @@ function doPing(call, callback) {
   console.log("Request received "+call.request);
   callback(null, {acknowledgement: 'Thank you for ' + call.request.greetings});
 }
-
 ```
 
 Here is the complete server code. [ping-server.js](https://github.com/neilghosh/node-grpc/blob/master/pingserver/ping-server.js)
