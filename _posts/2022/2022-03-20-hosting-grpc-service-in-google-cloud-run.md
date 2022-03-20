@@ -112,6 +112,6 @@ grpcurl \
 
 If you are trying to call the service hosted in cloud run you would need SSL in the client code `grpc.credentials.createSsl()` because cloud run ingress adds a default SSL layer.
 
-The latest version of [Postman also supports gRPC](https://blog.postman.com/postman-now-supports-grpc/), if you like a nice UI. It doesn't work in [Postman web](https://twitter.com/neilghosh/status/1494675412277886993) due to browser limitation of gRPC. 
+The latest version of [Postman also supports gRPC](https://blog.postman.com/postman-now-supports-grpc/), if you like a nice UI. It doesn't work in [Postman web](https://twitter.com/neilghosh/status/1494675412277886993) due to browser limitation of gRPC, it needs the postman agent at least. 
 
 If you want to consume such gRPC service from a Flutter client, [Debkanchan Samadder](https://twitter.com/debkanchans) has created a minimal demo app [DebkanchanSamadder/flutter-grpc-demo](https://github.com/DebkanchanSamadder/flutter-grpc-demo) consuming it. 
