@@ -1,3 +1,5 @@
+![gRPC + Cloud Run](/assets/grpc-plus-cloudrun.png)
+
 REST is the most popular interface to access a web service, [gRPC](https://grpc.io/) is a modern high performance framework that can run in any environment. If you remember [protochol buffers](https://developers.google.com/protocol-buffers) gRPC is the most straightforward way to use it.
 
 [Google Cloud Run](https://cloud.google.com/run) is a serverless platform which can host any container with HTTP endpoints (now gRPC too) and it takes care of scaling, authentication and monitoring on its own. Hence its language agnostic and all you need to know how to package your software in a container exposing an endpoint. 
