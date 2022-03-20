@@ -37,7 +37,7 @@ function main() {
   var server = new grpc.Server();
   server.addService(ping_proto.PingServer.service, {doPing: doPing});
 
-  const port = parseInt(process.env.PORT) || 50052;
+  const port = parseInt(process.env.PORT) || 50051;
 
   server.bindAsync('0.0.0.0:'+port, grpc.ServerCredentials.createInsecure(), () => {
     console.log("Starting server in port "+port);
