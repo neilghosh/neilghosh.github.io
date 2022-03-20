@@ -1,14 +1,14 @@
 ![gRPC + Cloud Run](/assets/grpc-plus-cloudrun.png)
 
-REST is the most popular interface to access a web service, [gRPC](https://grpc.io/) is a modern high performance framework that can run in any environment. If you remember [protochol buffers](https://developers.google.com/protocol-buffers) gRPC is the most straightforward way to use it.
+REST is the most popular interface to access a web service, [gRPC](https://grpc.io/) is a modern high performance framework that can run in any environment. If you remember [protochol buffers](https://developers.google.com/protocol-buffers), gRPC is the most straightforward way to use it.
 
 [Google Cloud Run](https://cloud.google.com/run) is a serverless platform which can host any container with HTTP endpoints (now gRPC too) and it takes care of scaling, authentication and monitoring on its own. Hence its language agnostic and all you need to know how to package your software in a container exposing an endpoint. 
 
-In this article we will create a simple service which exposes an gRPC endpoint in NodeJS and host it in google cloud run.
+In this article we will create a simple service which exposes a gRPC endpoint in NodeJS and host it in Google Cloud Run.
 
-First think we define the interface in which data is exchanged. So we create a proto file. Complete file [ping.proto](https://github.com/neilghosh/node-grpc/blob/master/protos/ping.proto). 
+First thing, we define the interface in which data is exchanged. So we create a proto file. Complete file [ping.proto](https://github.com/neilghosh/node-grpc/blob/master/protos/ping.proto). 
 
-This contains not just the message format (like a JSON contract of a REST service) but also the operations that is allowrd (lime methods in a SOAP WSDL definition)
+This contains not just the message format (like a JSON contract of a REST service) but also the operations that is allowrd (like methods in a SOAP WSDL)
 
 ```
 service PingServer {
@@ -39,7 +39,7 @@ function main() {
   });
 }
 ```
-Now that we have added the service `doPing` which, lets add an implementation.
+Now that we have added the service `doPing`, lets add an implementation.
 
 ```
 function doPing(call, callback) {
@@ -53,12 +53,11 @@ Here is the complete server code. [ping-server.js](https://github.com/neilghosh/
 
 We can run and test the server locally 
 
-
-lets run it locally 
+Lets run the server locally 
 
 `node ./pingserver/ping-server.js &`
 
-We can also build a dcoker image and run so that we know that its packaged properly and good to be deployed in cloud. This is the beauty of containers, once the image is created it would behave exacly same in any other host like it does locally so a lot of environment setup issues can be rulled out while debugging.
+We can also build a dcoker image and run so that we know that its packaged properly and good to be deployed in cloud. This is the beauty of containers, once the image is created it would behave exacly same in any other host like it does locally, so a lot of environment setup issues can be ruled out while debugging.
 
 ```
 docker build . -t gcr.io/$GCP_PROJECT/grpc-ping:latest
@@ -107,4 +106,6 @@ grpcurl \
 
 If you are trying to call the service hosted in cloud run you would need SSL in the client code `grpc.credentials.createSsl()` because cloud run ingress adds a default SSL layer.
 
-The latest version of [Postman also supports gRPC](https://blog.postman.com/postman-now-supports-grpc/), if you like a nice UI. It doesn't work in [Postman web](https://twitter.com/neilghosh/status/1494675412277886993) due to browser limitation. 
+The latest version of [Postman also supports gRPC](https://blog.postman.com/postman-now-supports-grpc/), if you like a nice UI. It doesn't work in [Postman web](https://twitter.com/neilghosh/status/1494675412277886993) due to browser limitation of gRPC. 
+
+If you want to consume such gRPC service from a Flutter client, [Debkanchan Samadder](https://twitter.com/debkanchans) has created a minimal demo app [DebkanchanSamadder/flutter-grpc-demo](https://github.com/DebkanchanSamadder/flutter-grpc-demo) consuming it. 
