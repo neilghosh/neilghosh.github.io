@@ -1,3 +1,9 @@
+---
+layout: post
+title: "Deploying gRPC service in Google Cloud Run"
+description: "Google Cloud Run supports gRPC along with REST interface. [gRPC](https://grpc.io/) is a modern high performance framework that can run in any environment. If you remember [protochol buffers](https://developers.google.com/protocol-buffers), gRPC is the most straightforward way to use it"
+---
+
 ![gRPC + Cloud Run](/assets/grpc-plus-cloudrun.png)
 
 REST is the most popular interface to access a web service, [gRPC](https://grpc.io/) is a modern high performance framework that can run in any environment. If you remember [protochol buffers](https://developers.google.com/protocol-buffers), gRPC is the most straightforward way to use it.
