@@ -107,4 +107,4 @@ grpcurl \
 
 If you are trying to call the service hosted in cloud run you would need SSL in the client code `grpc.credentials.createSsl()` because cloud run ingress adds a default SSL layer.
 
-The latest version of [Postman also supports gRPC](https://blog.postman.com/postman-now-supports-grpc/), if you like a nice UI.
+The latest version of [Postman also supports gRPC](https://blog.postman.com/postman-now-supports-grpc/), if you like a nice UI. It doesn't work in [Postman web](https://twitter.com/neilghosh/status/1494675412277886993) due to browser limitation. 
