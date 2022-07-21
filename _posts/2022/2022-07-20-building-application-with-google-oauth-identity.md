@@ -3,7 +3,7 @@ layout: post
 title: "Building Application With Google oAuth Identity"
 description: "Building Application With Google oAuth Identity"
 --- 
-**oAuth**
+**OAuth**
 
 Today we see so many applications with the "Sign In With Google" button (Well 10 years back we thought everything will be a "G+" button but that didn't happen :)). What it does is it lets you provide Google Credential (of course by redirecting to a valid Google Sign In page which you trust) and sign in exactly how you would sign in to a Google service like Gmail or Google Photos then it comes back to the original website and continues as a logged in user. This works as a "Single Sign On" where you don't have to sign in to the website using its own username/password and remember those hundreds of credentials for various sites you use on daily basis. Even yahoo.com which once was known as a rival of google services (especially in terms of email) has a "Sign In With Google Button". Even if you have a dedicated username/password for the website since your google account was linked to those credentials the website could recognise you if you can just prove that you own that Gmail id. An OAuth Client is created for interacting with Google on behalf of you.
 
@@ -15,8 +15,8 @@ Today we see so many applications with the "Sign In With Google" button (Well 10
     </tr>
   </table>
 
-One can go to Google Cloud Console (https://console.cloud.google.com/apis/credentials) and create a Client. 
-Here are more documentation. https://support.google.com/cloud/answer/6158849?hl=en
+One can go to Google Cloud Console [API Credentials](https://console.cloud.google.com/apis/credentials) and create a Client. 
+Here are more documentation.[OAuth API]https://support.google.com/cloud/answer/6158849?hl=en
 
 **Scope**
 
@@ -40,8 +40,7 @@ const authorizationUrl = oauth2Client.generateAuthUrl({
 
 ![Consent Screen](/assets/2022/consent-screen.png) 
 
-Documentation writting server side web apps with Google oAuth 
-https://developers.google.com/identity/protocols/oauth2/web-server
+Documentation writting server side web apps with Google oAuth (Identity)(https://developers.google.com/identity/protocols/oauth2/web-server)
 
 Finally, once the page is redirected to your app you can get hold of the access token and establish a session. In future articles, we can discuss the session handling and how using this access token further calls can be made to Google Services i.e. Google Drive and Google Photos.
 
