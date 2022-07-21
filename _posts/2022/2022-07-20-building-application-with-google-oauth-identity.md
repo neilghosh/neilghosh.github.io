@@ -10,7 +10,7 @@ Today we see so many applications with "Sign In With Google" button (Well 10 yea
 <table>
   <tr>
     <td>
-<img src="./yahoo-signin.png" /> </td><td> <img src="google-oauth-client.png" /> 
+<img src="/assets/2022/yahoo-signin.png" /> </td><td> <img src="/assets/2022/google-oauth-client.png" /> 
     </td>
     </tr>
   </table>
@@ -38,7 +38,7 @@ const authorizationUrl = oauth2Client.generateAuthUrl({
 });
 ```
 
-![Consent Screen](./consent-screen.png) 
+![Consent Screen](/assets/2022/consent-screen.png) 
 
 Documentation writting server side web apps with Google oAuth 
 https://developers.google.com/identity/protocols/oauth2/web-server
