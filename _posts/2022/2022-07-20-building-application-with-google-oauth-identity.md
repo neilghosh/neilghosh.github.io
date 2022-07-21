@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Building Application With Google oAuth Identity"
-description: "Building Application With Google oAuth Identity"
+title: "Building Application With Google OAuth Identity"
+description: "Creating Google OAuth Client Credentials, Adding scope to access Google Services"
 --- 
 **OAuth**
 
