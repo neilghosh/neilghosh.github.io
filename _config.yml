@@ -17,12 +17,14 @@ include:
 sass:
   sass_dir: _sass
   style: compressed
-
+  
+remote_theme: jekyll/minima
 # Gems
 plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-seo-tag
+  - jekyll-remote-theme
 
 # Permalinks
 permalink: /:year/:month/:title.html
