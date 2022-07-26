@@ -4,7 +4,7 @@ title: "Building Apps with Google Photos API"
 description: "While Google Photos has an very good UI to search, upload and brows through your Photos stored, it also provides a lot of APIs to read and manipulate photos data if you choose to build any apps of your own to work with Google Photos, of course your user needs to authenticate with their Google account first"
 ---
 
-[Previously](2022-07-20-building-application-with-google-oauth-identity.md) I talked about creating oAuth2 apps in Google Cloud by creating credentials and adding a scope in your code such that the user is prompted for the consent for the permissions such that your app can read/write using specific APIs like Google Drive or Google Photos.
+[Previously](Building-Apps-with-Google-Photos-API.html) I talked about creating oAuth2 apps in Google Cloud by creating credentials and adding a scope in your code such that the user is prompted for the consent for the permissions such that your app can read/write using specific APIs like Google Drive or Google Photos.
 
 ![Google Photos API](/assets/2022/google-photos-icon.png) 
 
