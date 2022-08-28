@@ -13,8 +13,8 @@ The beauty of the Himalayan range can be seen right from the plane to Ladakh. Mo
 
 The day 1 when everyone landed from various part of India was mostly recomended to be spent acclamatising the altitude. So there wasnt much of the activity but it was well utilised networking with each other.
 
-Day 2 started with very inspiring keynotes from various member of Google Developer Relations and some of the community sessions who presented 
+Day 2 started with very inspiring keynotes from various member of Google Developer Relations and some of the community sessions who presented on some of the designated topics. The day ended with a trip to the Thikse Monastery which was wuite a b
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg0NTY3NTkyMl19
+eyJoaXN0b3J5IjpbLTE1NjQ5NzkyNV19
 -->
