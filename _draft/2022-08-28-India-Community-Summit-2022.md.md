@@ -9,8 +9,8 @@ The agenda of this two and half days of summit was a mix of sessions from specia
 
 The preperation for the jouney involved making sure one is fit for high altitute like Ladakh and packing a bunch of warm cloths including jackets. Weather was actually bright and sunny and not much of use of the jacket untill its late evening when it starts to get a bit cold and breezy.
 
-The beThe stay was one of the best hotels of Ladakh with beautifull view through the window from the room. 
+The beauty of the Himalayan range can be seen right from the plane to Ladakh. Most flights in fact starts from New Delhi. The stay was one of the best hotels of Ladakh with beautifull view of Karakorom range through the window from the room. 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjQ2NjM5Njg4XX0=
+eyJoaXN0b3J5IjpbMTE5MDYxNTYzOF19
 -->
