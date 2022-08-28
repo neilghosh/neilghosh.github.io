@@ -11,8 +11,8 @@ The preperation for the jouney involved making sure one is fit for high altitute
 
 The beauty of the Himalayan range can be seen right from the plane to Ladakh. Most flights in fact starts from New Delhi. The stay was one of the best hotels of Ladakh with beautifull view of Karakoram range through the window from the room.
 
-The day 1 was mostl 
+The day 1 when everyone landed from various part of India was mostly recomended to be spent acclamatising the altitude. So there wasnt much of the activity but it was well utilised n
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEyMzE3Njc2MF19
+eyJoaXN0b3J5IjpbLTE2NzQ0OTIwODZdfQ==
 -->
