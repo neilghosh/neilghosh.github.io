@@ -7,8 +7,10 @@ description: "After a gap of 3 years due to pandemic the India Community Summit 
 
 The agenda of this two and half days of summit was a mix of sessions from special speakers from Google Developer Relations, Comunity Leaders, Cultural Programs and visits to nearby tourist places. However the biggest benefit was probably the oppertunity to connect with people in person which people have been deprived of lately due to pandemic.
 
+The preperation for the jouney involved making sure one is fit packing a bunch of warm cloths including jackets
+
 The stay was one of the best hotels of Ladakh with beautifull view through the window from the room. 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzQ0NDk5NDgzXX0=
+eyJoaXN0b3J5IjpbLTk2NzI5ODA0XX0=
 -->
