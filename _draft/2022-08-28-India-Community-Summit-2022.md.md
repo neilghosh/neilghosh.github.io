@@ -17,12 +17,12 @@ Day 2 started with very inspiring keynotes from various members of Google Develo
 
 The day ended with musical performance of Toungue Drum (which everyone in the audience got as a gift as well) by [Karthik Mani](https://www.instagram.com/karthikmani_drums/?hl=en) and cultural programs by the Ladakh Art and Culture Group.
 
-Day 3 continued with some of the breakout sessions for GDEs and remaining of the community sessions.
+Day 3 continued with some of the breakout sessions for GDEs and remaining of the community sessions. It also had fun team building activities. Post lunch we again set out for local sight seeing including the Shanti Stupa and Ladakh Palace 
 
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMjE3MDg2ODQsLTM5MTY5MzQ3OCwxNj
+eyJoaXN0b3J5IjpbLTE5MTgzNDM3ODIsLTM5MTY5MzQ3OCwxNj
 M4ODAzNTUxXX0=
 -->
