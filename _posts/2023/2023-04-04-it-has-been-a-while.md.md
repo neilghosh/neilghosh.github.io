@@ -8,10 +8,10 @@ One of the ways to start conversation, especially one-on-one is to ask "What's o
 
 I can't really write anything personal, like relationships, financial goals or even career aspiration at this point but at least mention the world view of mine which is definately in top 10 things in mind if not top 5 - which probably all occupied with very personal things.
 
-Firstly - Potential return of Covid is definately one of the concerning me right now. Fin
+Firstly - Potential return of Covid is definately one of the concerning me right now. Finally people had started to live their lives like pre-covid era but again there are news. 
 
 
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkxNzIxNjU4NF19
+eyJoaXN0b3J5IjpbMTI4NzIwNzIwM119
 -->
