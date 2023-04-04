@@ -4,10 +4,12 @@ I just realised that my last post was in august 2022. Thats nearly 8 months. I d
 
 So what's going on in this world. I actually have no idea, at least its hard to articulate whatever bits and pieces I think whats going on. How do I start putting them down?
 
-One of the ways to start conversation, especially one-on-one is to ask "What's on top of your mind?", not a bad strategy though needless to say the coversation will al
+One of the ways to start conversation, especially one-on-one is to ask "What's on top of your mind?", not a bad strategy though needless to say the coversation will always start with something top of my mind unless the agenda is defined for any meeting. Nevertheless, lets go with that strategy.
+
+I can't really write anything personal, like relationships, financial goals or even career aspiration at this point but at least mention the world 
 
 
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNzI3NzU0Ml19
+eyJoaXN0b3J5IjpbLTY5NjQ2ODk5XX0=
 -->
