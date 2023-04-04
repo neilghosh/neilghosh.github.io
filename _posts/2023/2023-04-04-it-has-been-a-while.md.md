@@ -8,10 +8,10 @@ One of the ways to start conversation, especially one-on-one is to ask "What's o
 
 I can't really write anything personal, like relationships, financial goals or even career aspiration at this point but at least mention the world view of mine which is definately in top 10 things in mind if not top 5 - which probably all occupied with very personal things.
 
-Firstly - Potential return of Covid is definately one of the concerning me right now. Finally people had started to live their lives like pre-covid era but again there are news. [New Covid Cases Up By 186% In Maharashtra, 4 Deaths In 24 Hours](https://www.ndtv.com/india-news/new-covid-cases-up-by-186-in-maharashtra-4-deaths-in-24-hours-3920000). I don't even see the chart that used to come in google's search result till few months back. The only good thing happened in covid is people learned to work remotely be it tech or teaching. I see a lot of parents co
+Firstly - Potential return of Covid is definately one of the concerning me right now. Finally people had started to live their lives like pre-covid era but again there are news. [New Covid Cases Up By 186% In Maharashtra, 4 Deaths In 24 Hours](https://www.ndtv.com/india-news/new-covid-cases-up-by-186-in-maharashtra-4-deaths-in-24-hours-3920000). I don't even see the chart that used to come in google's search result till few months back. The only good thing happened in covid is people learned to work remotely be it tech or teaching. I see a lot of parents could returned to work while they were forced to take a break to take care of their children at home. Well all these are not comparable with the lives lost during covid waves. All I can do is to 
 
 
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIwMDMxNzQ5OF19
+eyJoaXN0b3J5IjpbNDYwOTAyMDI3XX0=
 -->
