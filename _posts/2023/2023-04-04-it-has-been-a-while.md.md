@@ -1,3 +1,8 @@
+---
+layout: post
+title: "GCP and Travis"
+description: ""
+---
 It has been a while!
 
 I just realised that my last post was in August 2022. That's nearly 8 months. I doubt if there has been such a long gap in the past between the two posts. Honestly, I don't have anything specific to post today, definitely not related to tech. I am just trying to create a habit, of writing, at least the content that can be posted publicly. Something like Snapchat streak, just heard about it from one of my 17-year-old cousins though I never used it.  I know resolutions are taken in the new year usually but after all, April is the beginning of the financial year in India and in my opinion, more things reset in April than in January. So it's not really a bad time for starting anything.
@@ -17,5 +22,5 @@ There are other things like **climate change** that are always a concerning thin
 Hopefully, my next post will be tech related but I am glad I am able to write.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2Nzc4MjI1NTEsNzI4MjkyNzA5XX0=
+eyJoaXN0b3J5IjpbMjEyMTE3OTM1Nyw3MjgyOTI3MDldfQ==
 -->
