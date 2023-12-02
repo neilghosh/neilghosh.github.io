@@ -25,11 +25,11 @@ Since we will use various CLI commands from Google Cloud SDK, `gcloud` needs to 
 #### Generate embeddings from Images
 For this we will use the [multimodal api from Vertext AI](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-multimodal-embeddings#api-usage). This API takes both text and image. In case of image it takes either the image data (in base64 encoded bytes) or URL of the GCS object. GCS URLs would take less time to transfer the data from local run time storage, so we would go for that option.
 
-Following is the API contract 
+
 ```
 
 ```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTE5MDg2NjA1LDc2MTgxMDAwNF19
+eyJoaXN0b3J5IjpbMTg0MzQ3MjQxNSw3NjE4MTAwMDRdfQ==
 -->
