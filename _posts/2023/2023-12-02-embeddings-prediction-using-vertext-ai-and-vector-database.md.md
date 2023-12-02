@@ -18,8 +18,11 @@ Let's get started ...
 #### Setup gcloud 
 Since we will use various CLI commands from Google Cloud SDK, `gcloud` needs to be installed and authorised with the GCP project whose resources will be used.
 
-!curl https://sdk.cloud.google.com | bash
-from google.colab import auth 
+    !curl https://sdk.cloud.google.com | bash
+    !gcloud init
+    !gcloud config set project <project_id>
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDY5OTM1MDYzLDc2MTgxMDAwNF19
+eyJoaXN0b3J5IjpbLTExMjM2MzM4OTAsNzYxODEwMDA0XX0=
 -->
