@@ -111,10 +111,17 @@ write.writerows(rows)
 ```
 
 #### Inspect the results
-W
+We chose to save the result locally and inspect either clicking on the file directly in the notebook runtime' file system or just load it to pandas and print.
 ```
+import pandas as pd
+DATASET_URL='embeddings.csv'
+image_embeddings = pd.read_csv(DATASET_URL, header=None)
+
+product_embeddings.head(5)
+# for index, row in product_embeddings.iterrows():
+#   print(row[1:])
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgyNTYwMjY4MSwtMTExMjg3MjY5NSwxOT
-kyNzQ5MDE3LDc2MTgxMDAwNF19
+eyJoaXN0b3J5IjpbNjU2ODM0MDQ4LC0xMTEyODcyNjk1LDE5OT
+I3NDkwMTcsNzYxODEwMDA0XX0=
 -->
