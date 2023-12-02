@@ -177,12 +177,12 @@ Now we can query the database for similar image to a specific image.
             image_id )
 ```
 
-This query essentially takes an name of the image file as `image_id` and compares its own embeddings with the embeddings of other images and returns the top 5 images (excluding the input image whose distance of course will be zero) whose distance is closer to the supplied image. In this example I wanted to find of there are similar images to tha photo of the plane and if you notice in the result, it returns 4 planes of which first two's distance is very less ( < 0.16 because it was the same plane taken from different angle) and other two have higher distance (betwene 0.34 to .40) . The last image is actually of a bird hence has a even higher distance. By doing the following  results could have been more accurate i.e. distance of the same plane would have been very small order as compared to a different plan or a bird for which distance was expected to be very high. 
+This query essentially takes an name of the image file as `image_id` and compares its own embeddings with the embeddings of other images and returns the top 5 images (excluding the input image whose distance of course will be zero) whose distance is closer to the supplied image. In this example I wanted to find of there are similar images to tha photo of the plane and if you notice in the result, it returns 4 planes of which first two's distance is very less ( < 0.2 because it was the same plane taken from different angle) and other two have higher distance (betwene 0.3 to .4) . The last image is actually of a bird hence has a even higher distance( < 0.5). By doing the following changes the results could have been more accurate i.e. distance of the same plane would have been very small  as compared to a that of different plan or a bird for which distance was expected to be very high. 
 
 - The dimention of the embedding could be increased so that more features of the images could have been used for comparison/distance.
-- The input image itself could have been cropped to the object only so that the sky which is common in all images couldn't have dominated the similarity. 
+- The input image itself could have been processed (e.g. cropped to the object) only so that the sky which is common in all images couldn't have dominated the similarity. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODMwMTIxNDA3LC04Mjc0OTg5NDQsMTgxMD
-gwNzU3NywtNDYwODMxMTg5LC0xMTEyODcyNjk1LDE5OTI3NDkw
-MTcsNzYxODEwMDA0XX0=
+eyJoaXN0b3J5IjpbMTUyOTMzMDcsLTgyNzQ5ODk0NCwxODEwOD
+A3NTc3LC00NjA4MzExODksLTExMTI4NzI2OTUsMTk5Mjc0OTAx
+Nyw3NjE4MTAwMDRdfQ==
 -->
