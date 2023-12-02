@@ -122,8 +122,45 @@ image_embeddings.head(5)
 We will create a small instance of Cloud SQL and  install the pg-vector extension to support `VECTOR` data type.  We choose 1 CPU and 1.7 GB memory to minimise cost as we are not going to store and query a lot of data. Cloud SQL instance is charged as long as its up so we can stop the instance once we are done and start it when we intend to use it again. It will still charge for the storage and IP etc but they are negligble as compared to instance running cost.
 
 ```
-`
+    DATASET_URL='embeddings.csv'
+    image_embeddings = pd.read_csv(DATASET_URL, header=None)
+
+
+    loop = asyncio.get_running_loop()
+    async with Connector(loop=loop) as connector:
+        # Create connection to Cloud SQL database.
+        conn: asyncpg.Connection = await connector.connect_async(
+            f"{project_id}:{region}:{instance_name}",  # Cloud SQL instance connection name
+            "asyncpg",
+            user=f"{database_user}",
+            password=f"{database_password}",
+            db=f"{database_name}",
+        )
+
+        await conn.execute("CREATE EXTENSION IF NOT EXISTS vector")
+        await register_vector(conn)
+
+        await conn.execute("DROP TABLE IF EXISTS image_embeddings")
+        # Create the `product_embeddings` table to store vector embeddings.
+        await conn.execute(
+            """CREATE TABLE image_embeddings(
+                                image_id VARCHAR(1024),
+                                content TEXT,
+                                embedding vector(128))"""
+        )
+
+        # Store all the generated embeddings back into the database.
+        for index, row in image_embeddings.iterrows():
+            await conn.execute(
+                "INSERT INTO image_embeddings (image_id, content, embedding) VALUES ($1, $2, $3)",
+                row[0],
+                "",
+                np.array(row[1:]),
+            )
+```
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE5ODQxMDA0LC0xMTEyODcyNjk1LDE5OT
-I3NDkwMTcsNzYxODEwMDA0XX0=
+eyJoaXN0b3J5IjpbLTEzMTcyNDc1NzYsLTExMTI4NzI2OTUsMT
+k5Mjc0OTAxNyw3NjE4MTAwMDRdfQ==
 -->
