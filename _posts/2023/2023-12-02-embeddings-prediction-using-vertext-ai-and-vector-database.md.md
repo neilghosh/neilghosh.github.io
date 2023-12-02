@@ -181,8 +181,10 @@ This query essentially takes an name of the image file as `image_id` and compare
 
 - The dimention of the embedding could be increased so that more features of the images could have been used for comparison/distance.
 - The input image itself could have been processed (e.g. cropped to the object)  so that the sky which is common in all images couldn't have dominated the similarity. 
+
+I'll soon upload the the fully working notebook (of course Bring Your Own GCP Project).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyODk1MTA4MzMsLTgyNzQ5ODk0NCwxOD
-EwODA3NTc3LC00NjA4MzExODksLTExMTI4NzI2OTUsMTk5Mjc0
-OTAxNyw3NjE4MTAwMDRdfQ==
+eyJoaXN0b3J5IjpbODA1NDY5Nzc4LC04Mjc0OTg5NDQsMTgxMD
+gwNzU3NywtNDYwODMxMTg5LC0xMTEyODcyNjk1LDE5OTI3NDkw
+MTcsNzYxODEwMDA0XX0=
 -->
