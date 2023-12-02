@@ -86,6 +86,7 @@ The response would be a an array of numbers, similar to following
 ```
 The above API (python client) only supports one image at a time, so it can be called for each image found in a GCS bucket were we have uploaded the image files. [There is a Batch API](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/batch-prediction-genai-embeddings) for this for that only supports the text as input so far. This is one of the reason why we choose to use GCS objects URLs directly instead of encoding the image into base64 bytes and sending the full content in the API.
 
+### Invoke API and Save Embeddings  
 We use google cloud python sdk again to list the images found in the bucket and parse the response from the API and save as CSV file.
 
 ```
@@ -108,7 +109,12 @@ with  open('embeddings.csv', 'w') as f:
 write = csv.writer(f)
 write.writerows(rows)
 ```
+
+#### Inspect the results
+W
+```
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM0OTY4ODQ2NCwtMTExMjg3MjY5NSwxOT
+eyJoaXN0b3J5IjpbLTgyNTYwMjY4MSwtMTExMjg3MjY5NSwxOT
 kyNzQ5MDE3LDc2MTgxMDAwNF19
 -->
