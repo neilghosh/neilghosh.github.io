@@ -44,6 +44,11 @@ Following is the API Request Payload. We have kept the dimension to be the minim
 ```
 #### Python Client 
 ```
+location : str = "us-central1",
+api_regional_endpoint: str = "us-central1-aiplatform.googleapis.com"):
+client_options = {"api_endpoint": api_regional_endpoint}
+self.client = aiplatform.gapic.PredictionServiceClient(client_options=client_options)
+
 image_struct = instance.fields['image'].struct_value
 image_struct.fields['gcsUri'].string_value = gcs_url
 instances = [instance]
@@ -54,7 +59,7 @@ parameters = parameter
 
 endpoint = (f"projects/{self.project}/locations/{self.location}"
       "/publishers/google/models/multimodalembedding@001")
-    response = self.client.predict(endpoint=endpoint, instances=instances, parameters=parameters)
+response = self.client.predict(endpoint=endpoint, instances=instances, parameters=parameters)
 ```
 
 The response would be a an array of numbers, similar to following 
@@ -80,5 +85,5 @@ The response would be a an array of numbers, similar to following
 }
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NTgxMDAxNDksNzYxODEwMDA0XX0=
+eyJoaXN0b3J5IjpbMTk5Mjc0OTAxNyw3NjE4MTAwMDRdfQ==
 -->
