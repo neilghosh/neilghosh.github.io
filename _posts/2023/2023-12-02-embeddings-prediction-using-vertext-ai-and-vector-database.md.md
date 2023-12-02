@@ -9,13 +9,13 @@ These embeddings can be stored in a vector database and verious queries like fin
 
 ![enter image description here](/assets/2023/plane-bird-distance.jpg)
 
-In this post we will generate embeddings from photos stored in Google Cloud Storage and save them PostgresSQL database with [pg-vector enxtension](https://github.com/pgvector/pgvector). Then we will query any images which are similar to any given images on the data. We will use a notebook in Collab Enterprise which is a great way of interactively play with code snippets and iterate like a REPL. It is backed by computing resources (called as Runtimes) from Google Cloud which can spin up and scale very quickly. Notebooks in cloud also can be shared with others who can contribute text and code simultaniously.
+In this post we will generate embeddings from photos stored in Google Cloud Storage and save them PostgresSQL database with [pg-vector enxtension](https://github.com/pgvector/pgvector). Then we will query for images which are similar to any given images on the data set. We will use a notebook in Collab Enterprise which is a great way of interactively play with code snippets and iterate like a REPL. It is backed by computing resources (called as Runtimes) from Google Cloud which can spin up and scale very quickly. Notebooks in cloud also can be shared with others who can contribute text and code simultaniously.
 
 Let's get started ...
 
 ### Setting up
 #### Launching Notebook.
-[Collab Enterprise](https://console.cloud.google.com/vertex-ai/colab/notebooks) can be accessed directly under the Vertext AI menu in Google Cloud Console. Once all billing account and all necessary accounts are enabled we should be able to create notebooks.
+[Collab Enterprise](https://console.cloud.google.com/vertex-ai/colab/notebooks) can be accessed directly under the Vertext AI menu in Google Cloud Console. Once enabled with billing account and all necessary APIs are enabled we should be able to create notebooks.
 
 #### Setup gcloud 
 Since we will use various CLI commands from Google Cloud SDK, `gcloud` needs to be installed and authorised with the GCP project whose resources will be used.
@@ -185,7 +185,7 @@ This essentially takes an name of the image file as `image_id` and compares its 
 - The dimention of the embedding could be increased so that more features of the images could have been used for comparison/distance.
 - The input image itself could have been cropped to the object only so that the sky which is common in all images couldn't have dominated the similarity. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MTc1NTkyMzYsMTgxMDgwNzU3NywtND
-YwODMxMTg5LC0xMTEyODcyNjk1LDE5OTI3NDkwMTcsNzYxODEw
-MDA0XX0=
+eyJoaXN0b3J5IjpbNDExNTQ4NTU2LDE4MTA4MDc1NzcsLTQ2MD
+gzMTE4OSwtMTExMjg3MjY5NSwxOTkyNzQ5MDE3LDc2MTgxMDAw
+NF19
 -->
