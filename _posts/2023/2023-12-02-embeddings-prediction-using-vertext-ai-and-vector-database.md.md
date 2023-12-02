@@ -119,8 +119,8 @@ image_embeddings = pd.read_csv(DATASET_URL, header=None)
 image_embeddings.head(5)
 ```
 ### Setup Cloud SQL
-We will create a small instance of Cloud SQL and  install the pg-vector extens 
+We will create a small instance of Cloud SQL and  install the pg-vector extension to support `VECTOR` data type.  We choose 1 CPU and 1.7 GB memory to minimise cost as we are 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAwNDEwMzgxOCwtMTExMjg3MjY5NSwxOT
+eyJoaXN0b3J5IjpbLTk2MTU3NDY4MSwtMTExMjg3MjY5NSwxOT
 kyNzQ5MDE3LDc2MTgxMDAwNF19
 -->
