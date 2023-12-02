@@ -176,8 +176,8 @@ Now we can query the database for similar image to a specific image.
             ''',
             image_id )
 ```
-This essentially takes an name of the image file as `image_id` and compares its own embeddings with embeddings of other images and returns the top 5 images whose distance is closer to the supplied image. In this example I wanted to find of there are similar images to tha photo of the plane and if you notice in the result, it ret
+This essentially takes an name of the image file as `image_id` and compares its own embeddings with embeddings of other images and returns the top 5 images (excluding the input image whose distance of course will be zero) whose distance is closer to the supplied image. In this example I wanted to find of there are similar images to tha photo of the plane and if you notice in the result, it returns 4 planes of which first two's distance is very less (because it was the same plane taken from different angle) and other two 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM5OTQ3NzI3NCwtMTExMjg3MjY5NSwxOT
-kyNzQ5MDE3LDc2MTgxMDAwNF19
+eyJoaXN0b3J5IjpbLTEzMDk4ODE3NDMsLTExMTI4NzI2OTUsMT
+k5Mjc0OTAxNyw3NjE4MTAwMDRdfQ==
 -->
