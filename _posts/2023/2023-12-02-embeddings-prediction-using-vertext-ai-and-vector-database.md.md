@@ -86,8 +86,31 @@ The response would be a an array of numbers, similar to following
 ```
 The above API (python client) only supports one image at a time, so it can be called for each image found in a GCS bucket were we have uploaded the image files. There is a Batch API for this for that only supports the text as input so far. This is one of the reason why we choose to use GCS objects URLs directly instead of encoding the image into base64 bytes and sending the full content in the API.
 
-We use google cloud python sdk again to list the images found in the bucket
+We use google cloud python sdk again to list the images found in the bucket and parse the response from the API and save as CSV file.
+
+```
+bucket_name = "birdwalk"
+storage_client = storage.Client()
+blobs = storage_client.list_blobs(bucket_name)
+for blob in blobs:
+
+instance = struct_pb2.Struct()
+
+gcs_url = os.path.join("gs://", bucket_name, blob.name)
+
+image_struct = instance.fields['image'].struct_value
+
+image_struct.fields['gcsUri'].string_value = gcs_url
+
+response = client.get_embedding(image_bytes=image_file_contents, gcs_url=gcs_url)
+
+row = response.image_embedding;
+
+row.insert(0, blob.name)
+
+rows.append(row)
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODI0MTAxNjgsMTk5Mjc0OTAxNyw3NjE4MT
-AwMDRdfQ==
+eyJoaXN0b3J5IjpbMTQ4MzY1NjI4LDE5OTI3NDkwMTcsNzYxOD
+EwMDA0XX0=
 -->
