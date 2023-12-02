@@ -85,7 +85,7 @@ The response would be a an array of numbers, similar to following
   ]
 }
 ```
-The above API (python client) only supports one image at a time, so it can be called for each image found in a GCS bucket were we have uploaded the image files. [There is a Batch API](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/batch-prediction-genai-embeddings) for this for that only supports the text as input so far. This is one of the reason why we choose to use GCS objects URLs directly instead of encoding the image into base64 bytes and sending the full content in the API.
+The above API (python client) only supports one image at a time, so it can be called for each image found in a GCS bucket were we have uploaded the image files. [There is a Batch API](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/batch-prediction-genai-embeddings) for this but that only supports the text only far. This is one of the reason why we chose to use GCS objects URLs directly instead of encoding the image into base64 bytes and sending the full content in the API.
 
 ### Invoke API and Save Embeddings  
 We use google cloud python sdk again to list the images found in the bucket and parse the response from the API and save as CSV file.
@@ -184,7 +184,7 @@ This essentially takes an name of the image file as `image_id` and compares its 
 - The dimention of the embedding could be increased so that more features of the images could have been used for comparison/distance.
 - The input image itself could have been cropped to the object only so that the sky which is common in all images couldn't have dominated the similarity. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI3MzMzOTg5LDE4MTA4MDc1NzcsLTQ2MD
-gzMTE4OSwtMTExMjg3MjY5NSwxOTkyNzQ5MDE3LDc2MTgxMDAw
-NF19
+eyJoaXN0b3J5IjpbLTgyNzQ5ODk0NCwxODEwODA3NTc3LC00Nj
+A4MzExODksLTExMTI4NzI2OTUsMTk5Mjc0OTAxNyw3NjE4MTAw
+MDRdfQ==
 -->
