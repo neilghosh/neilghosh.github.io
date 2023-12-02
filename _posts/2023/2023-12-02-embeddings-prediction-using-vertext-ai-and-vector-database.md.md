@@ -120,7 +120,7 @@ image_embeddings = pd.read_csv(DATASET_URL, header=None)
 image_embeddings.head(5)
 ```
 ### Setup Cloud SQL
-We will create a small instance of Cloud SQL and  install the pg-vector extension to support `VECTOR` data type.  We choose 1 CPU and 1.7 GB memory to minimise cost as we are not going to store and query a lot of data. Cloud SQL instance is charged as long as its up so we can stop the instance once we are done and start it when we intend to use it again. It will still charge for the storage and IP etc but they are negligble as compared to instance running cost.
+We will create a small instance of Cloud SQL and install the pg-vector extension to support `VECTOR` data type.  We choose 1 CPU and 1.7 GB memory to minimise cost as we are not going to store and query a lot of data. Cloud SQL instance is charged as long as its up so we can stop the instance once we are done and start it when we intend to use it again. It will still charge for the storage and IP etc but they are negligble as compared to instance running cost.
 
 ```
     DATASET_URL='embeddings.csv'
@@ -184,7 +184,7 @@ This essentially takes an name of the image file as `image_id` and compares its 
 - The dimention of the embedding could be increased so that more features of the images could have been used for comparison/distance.
 - The input image itself could have been cropped to the object only so that the sky which is common in all images couldn't have dominated the similarity. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgyNzQ5ODk0NCwxODEwODA3NTc3LC00Nj
-A4MzExODksLTExMTI4NzI2OTUsMTk5Mjc0OTAxNyw3NjE4MTAw
-MDRdfQ==
+eyJoaXN0b3J5IjpbNzM4MTkxNDY0LC04Mjc0OTg5NDQsMTgxMD
+gwNzU3NywtNDYwODMxMTg5LC0xMTEyODcyNjk1LDE5OTI3NDkw
+MTcsNzYxODEwMDA0XX0=
 -->
