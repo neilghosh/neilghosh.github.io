@@ -27,7 +27,7 @@ For this we will use the [multimodal api from Vertext AI](https://cloud.google.c
 
 Following is the API Request Payload. We have kept the dimension to be the minimum supported so that we get a quick and small response. Larger dimention would gives us more accuracy while searching at later stage (by retaining more information from the images)
 
-
+#### Request
 ```
 {
   "instances": [
@@ -42,7 +42,15 @@ Following is the API Request Payload. We have kept the dimension to be the minim
   }
 }
 ```
+#### Python Client 
+```
+    endpoint = (f"projects/{self.project}/locations/{self.location}"
+      "/publishers/google/models/multimodalembedding@001")
+    response = self.client.predict(endpoint=endpoint, instances=instances, parameters=parameters)
+```
+
 The response would be a an array of numbers, similar to following 
+#### Response
 ```
 {
   "predictions": [
@@ -64,5 +72,5 @@ The response would be a an array of numbers, similar to following
 }
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY1NjYxOTAxOSw3NjE4MTAwMDRdfQ==
+eyJoaXN0b3J5IjpbMTYyNTM0MTcxOCw3NjE4MTAwMDRdfQ==
 -->
