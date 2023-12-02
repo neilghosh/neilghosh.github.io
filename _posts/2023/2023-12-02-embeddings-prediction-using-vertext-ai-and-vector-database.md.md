@@ -5,11 +5,11 @@ description: ""
 ---
 Google Cloud Vertex AI's Multimodal Prediction Models lets us create embeddings from Images (or even text for that matter). By default the embeddings are generated as 1408-dimension vectors however this value is configurable.
 
-These embeddings can be stored in a vector database and verious queries like finding similar images can be done on the stored vector data.
+These embeddings can be stored in a vector database and verious queries like finding similar images on the basis of distances can be done on the stored vector data.
 
 ![enter image description here](/assets/2023/plane-bird-distance.jpg)
 
-In this post we will generate embeddings from photos stored in Google Cloud Storage and save them PostgresSQL database with pg-vector enxtension. Then we will query any images which are similar to any given images on the data. We will use a notebook in Collab Enterprise which is a great way of interactively play with code snippets and iterate like a REPL. It is backed by computing resources (called as Runtimes) from Google Cloud which can spin up and scale very quickly. Notebooks in cloud also can be shared with others who can contribute text and code simultaniously.
+In this post we will generate embeddings from photos stored in Google Cloud Storage and save them PostgresSQL database with [pg-vector enxtension](https://github.com/pgvector/pgvector). Then we will query any images which are similar to any given images on the data. We will use a notebook in Collab Enterprise which is a great way of interactively play with code snippets and iterate like a REPL. It is backed by computing resources (called as Runtimes) from Google Cloud which can spin up and scale very quickly. Notebooks in cloud also can be shared with others who can contribute text and code simultaniously.
 
 Let's get started ...
 
@@ -185,7 +185,7 @@ This essentially takes an name of the image file as `image_id` and compares its 
 - The dimention of the embedding could be increased so that more features of the images could have been used for comparison/distance.
 - The input image itself could have been cropped to the object only so that the sky which is common in all images couldn't have dominated the similarity. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMzc4NzIzMzksMTgxMDgwNzU3NywtND
+eyJoaXN0b3J5IjpbLTE5MTc1NTkyMzYsMTgxMDgwNzU3NywtND
 YwODMxMTg5LC0xMTEyODcyNjk1LDE5OTI3NDkwMTcsNzYxODEw
 MDA0XX0=
 -->
