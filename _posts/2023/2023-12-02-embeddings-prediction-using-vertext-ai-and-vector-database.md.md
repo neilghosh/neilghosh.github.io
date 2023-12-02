@@ -116,12 +116,11 @@ We chose to save the result locally and inspect either clicking on the file dire
 import pandas as pd
 DATASET_URL='embeddings.csv'
 image_embeddings = pd.read_csv(DATASET_URL, header=None)
-
-product_embeddings.head(5)
-# for index, row in product_embeddings.iterrows():
-#   print(row[1:])
+image_embeddings.head(5)
 ```
+### Setup Cloud SQL
+We will create a small instance of Cloud SQL and  install 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjU2ODM0MDQ4LC0xMTEyODcyNjk1LDE5OT
-I3NDkwMTcsNzYxODEwMDA0XX0=
+eyJoaXN0b3J5IjpbMTMyNDQ4NDY0OSwtMTExMjg3MjY5NSwxOT
+kyNzQ5MDE3LDc2MTgxMDAwNF19
 -->
