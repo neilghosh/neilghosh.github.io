@@ -44,7 +44,15 @@ Following is the API Request Payload. We have kept the dimension to be the minim
 ```
 #### Python Client 
 ```
-    endpoint = (f"projects/{self.project}/locations/{self.location}"
+image_struct = instance.fields['image'].struct_value
+image_struct.fields['gcsUri'].string_value = gcs_url
+instances = [instance]
+
+parameter = struct_pb2.Struct()
+parameter.fields['dimension'].number_value = 128
+parameters = parameter
+
+endpoint = (f"projects/{self.project}/locations/{self.location}"
       "/publishers/google/models/multimodalembedding@001")
     response = self.client.predict(endpoint=endpoint, instances=instances, parameters=parameters)
 ```
@@ -72,5 +80,5 @@ The response would be a an array of numbers, similar to following
 }
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYyNTM0MTcxOCw3NjE4MTAwMDRdfQ==
+eyJoaXN0b3J5IjpbLTE0NTgxMDAxNDksNzYxODEwMDA0XX0=
 -->
