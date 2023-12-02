@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Generate Embeddings  using Vertext AI and Vector Database"
+title: "Generate Embeddings using Vertext AI and Vector Database"
 description: ""
 ---
 Google Cloud Vertex AI's Multimodal Prediction Models lets us create embeddings from Images (or even text for that matter). By default the embeddings are generated as 1408-dimension vectors however this value is configurable.
@@ -185,7 +185,7 @@ This essentially takes an name of the image file as `image_id` and compares its 
 - The dimention of the embedding could be increased so that more features of the images could have been used for comparison/distance.
 - The input image itself could have been cropped to the object only so that the sky which is common in all images couldn't have dominated the similarity. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc5OTk3NDg0OSwxODEwODA3NTc3LC00Nj
-A4MzExODksLTExMTI4NzI2OTUsMTk5Mjc0OTAxNyw3NjE4MTAw
-MDRdfQ==
+eyJoaXN0b3J5IjpbLTIwMzc4NzIzMzksMTgxMDgwNzU3NywtND
+YwODMxMTg5LC0xMTEyODcyNjk1LDE5OTI3NDkwMTcsNzYxODEw
+MDA0XX0=
 -->
