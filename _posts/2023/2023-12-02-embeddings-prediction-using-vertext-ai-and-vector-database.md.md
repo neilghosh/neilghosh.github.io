@@ -119,8 +119,8 @@ image_embeddings = pd.read_csv(DATASET_URL, header=None)
 image_embeddings.head(5)
 ```
 ### Setup Cloud SQL
-We will create a small instance of Cloud SQL and  install 
+We will create a small instance of Cloud SQL and  install the pg 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMyNDQ4NDY0OSwtMTExMjg3MjY5NSwxOT
+eyJoaXN0b3J5IjpbMjA1MjU5MTA4OSwtMTExMjg3MjY5NSwxOT
 kyNzQ5MDE3LDc2MTgxMDAwNF19
 -->
