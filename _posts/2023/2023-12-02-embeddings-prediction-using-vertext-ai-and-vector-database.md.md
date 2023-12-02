@@ -22,7 +22,11 @@ Since we will use various CLI commands from Google Cloud SDK, `gcloud` needs to 
     !gcloud init
     !gcloud config set project <project_id>
 
+#### Generate embeddings from Images
+For this we will use the multimodal api from Vertext AI
+
+!gsutil cp gs://birdwalk/* images/
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMjM2MzM4OTAsNzYxODEwMDA0XX0=
+eyJoaXN0b3J5IjpbLTE5ODQxNjQ5OTYsNzYxODEwMDA0XX0=
 -->
