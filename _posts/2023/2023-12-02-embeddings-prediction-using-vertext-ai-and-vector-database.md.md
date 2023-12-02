@@ -27,7 +27,7 @@ Since we will use various CLI commands from Google Cloud SDK, `gcloud` needs to 
 #### Generate embeddings from Images
 For this we will use the [multimodal api from Vertext AI](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-multimodal-embeddings#api-usage). This API takes both text and image. In case of image it takes either the image data (in base64 encoded bytes) or URL of the GCS object. GCS URLs would take less time to transfer the data from local run time storage, so we would go for that option.
 
-Following is the API Request Payload. We have kept the dimension to be the minimum supported so that we get a quick and small response. Larger dimention would gives us more accuracy while searching at later stage (by retaining more information from the images)
+Following is the API Request Payload. We have kept the dimension to be the minimum supported so that we get a quick and small response for the experiment. Larger dimentions would gives us more accuracy while searching at later stage  by retaining more information from the images into the embeding vectors.
 
 #### Request
 ```
@@ -82,8 +82,7 @@ The response would be a an array of numbers, similar to following
         -0.00452344026
       ]
     }
-  ],
-  "deployedModelId": "DEPLOYED_MODEL_ID"
+  ]
 }
 ```
 The above API (python client) only supports one image at a time, so it can be called for each image found in a GCS bucket were we have uploaded the image files. [There is a Batch API](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/batch-prediction-genai-embeddings) for this for that only supports the text as input so far. This is one of the reason why we choose to use GCS objects URLs directly instead of encoding the image into base64 bytes and sending the full content in the API.
@@ -185,7 +184,7 @@ This essentially takes an name of the image file as `image_id` and compares its 
 - The dimention of the embedding could be increased so that more features of the images could have been used for comparison/distance.
 - The input image itself could have been cropped to the object only so that the sky which is common in all images couldn't have dominated the similarity. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDExNTQ4NTU2LDE4MTA4MDc1NzcsLTQ2MD
+eyJoaXN0b3J5IjpbMTI3MzMzOTg5LDE4MTA4MDc1NzcsLTQ2MD
 gzMTE4OSwtMTExMjg3MjY5NSwxOTkyNzQ5MDE3LDc2MTgxMDAw
 NF19
 -->
