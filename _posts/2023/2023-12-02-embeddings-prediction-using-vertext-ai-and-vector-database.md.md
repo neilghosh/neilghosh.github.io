@@ -11,8 +11,9 @@ In this post we will generate embeddings from photos stored in Google Cloud Stor
 
 Let's get started ...
 
-### Launching Notebook.
-Collab 
+### S
+ Launching Notebook.
+[Collab Enterprise](https://console.cloud.google.com/vertex-ai/colab/notebooks) can be accessed directly under the Vertext AI menu in Google Cloud Console. Once all billing account and all necessary accounts are enabled we should be able to create notebooks..
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMTcwNTcxNTEsNzYxODEwMDA0XX0=
+eyJoaXN0b3J5IjpbNzcxODYyOTQ5LDc2MTgxMDAwNF19
 -->
