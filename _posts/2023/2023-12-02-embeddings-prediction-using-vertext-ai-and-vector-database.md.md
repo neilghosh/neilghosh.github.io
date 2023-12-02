@@ -16,7 +16,10 @@ Let's get started ...
 [Collab Enterprise](https://console.cloud.google.com/vertex-ai/colab/notebooks) can be accessed directly under the Vertext AI menu in Google Cloud Console. Once all billing account and all necessary accounts are enabled we should be able to create notebooks.
 
 #### Setup gcloud 
-Since we will use various CLI commands from Google Cloud SDK 
+Since we will use various CLI commands from Google Cloud SDK, `gcloud` needs to be installed and authorised with the GCP project whose resources will be used.
+
+!curl https://sdk.cloud.google.com | bash
+from google.colab import auth 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg5MDgwMTExNCw3NjE4MTAwMDRdfQ==
+eyJoaXN0b3J5IjpbNDY5OTM1MDYzLDc2MTgxMDAwNF19
 -->
