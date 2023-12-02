@@ -11,7 +11,8 @@ In this post we will generate embeddings from photos stored in Google Cloud Stor
 
 Let's get started ...
 
-Launching Notebook.
+### Launching Notebook.
+Collab 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE1Nzg0OTc4MSw3NjE4MTAwMDRdfQ==
+eyJoaXN0b3J5IjpbLTIxMTcwNTcxNTEsNzYxODEwMDA0XX0=
 -->
