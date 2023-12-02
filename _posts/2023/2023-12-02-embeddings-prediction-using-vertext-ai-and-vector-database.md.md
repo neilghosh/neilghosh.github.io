@@ -93,24 +93,22 @@ bucket_name = "birdwalk"
 storage_client = storage.Client()
 blobs = storage_client.list_blobs(bucket_name)
 for blob in blobs:
+	instance = struct_pb2.Struct()
+	gcs_url = os.path.join("gs://", bucket_name, blob.name)
+	image_struct = instance.fields['image'].struct_value
+	image_struct.fields['gcsUri'].string_value = gcs_url
 
-instance = struct_pb2.Struct()
+	response = client.get_embedding(image_bytes=image_file_contents, gcs_url=gcs_url)
+	
+	row = response.image_embedding;
+	row.insert(0, blob.name) #add the image name as key
+	rows.append(row)
 
-gcs_url = os.path.join("gs://", bucket_name, blob.name)
-
-image_struct = instance.fields['image'].struct_value
-
-image_struct.fields['gcsUri'].string_value = gcs_url
-
-response = client.get_embedding(image_bytes=image_file_contents, gcs_url=gcs_url)
-
-row = response.image_embedding;
-
-row.insert(0, blob.name)
-
-rows.append(row)
+with  open('embeddings.csv', 'w') as f:
+write = csv.writer(f)
+write.writerows(rows)
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ4MzY1NjI4LDE5OTI3NDkwMTcsNzYxOD
-EwMDA0XX0=
+eyJoaXN0b3J5IjpbLTExMTI4NzI2OTUsMTk5Mjc0OTAxNyw3Nj
+E4MTAwMDRdfQ==
 -->
