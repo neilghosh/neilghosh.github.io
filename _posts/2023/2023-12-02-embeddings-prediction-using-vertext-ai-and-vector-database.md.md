@@ -158,9 +158,26 @@ We will create a small instance of Cloud SQL and  install the pg-vector extensio
                 np.array(row[1:]),
             )
 ```
-
-
+### Query For Similar Images
+Now we can query the database for similar image to a specific image.
+```
+        result = await conn.fetch(
+            '''
+              SELECT
+                image_id,
+                embedding <-> ( SELECT
+                                  embedding
+                                FROM image_embeddings
+                                WHERE image_id = $1) as distance
+              FROM image_embeddings
+              WHERE image_id != $1
+              ORDER BY distance
+              LIMIT 5;
+            ''',
+            image_id )
+```
+This essentially takes an name of the image filr 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMTcyNDc1NzYsLTExMTI4NzI2OTUsMT
+eyJoaXN0b3J5IjpbLTE4MzM0ODIzNDIsLTExMTI4NzI2OTUsMT
 k5Mjc0OTAxNyw3NjE4MTAwMDRdfQ==
 -->
