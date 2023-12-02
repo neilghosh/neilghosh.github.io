@@ -26,6 +26,8 @@ Since we will use various CLI commands from Google Cloud SDK, `gcloud` needs to 
 For this we will use the [multimodal api from Vertext AI](https://cloud.google.com/vertex-ai/docs/generative-ai/embeddings/get-multimodal-embeddings#api-usage). This API takes both text and image. In case of image it takes either the image data (in base64 encoded bytes) or URL of the GCS object. GCS URLs would take less time to transfer the data from local run time storage, so we would go for that option.
 
 Following is the API Request Payload. We have kept the dimension to be the minimum supported so that we get a quick and small response. Larger dimention would gives us more accuracy while searching at later stage (by retaining more information from the images)
+
+POST https://<region>-aiplatform.googleapis.com/v1/projects/project/locations/us-central1/publishers/google/models/multimodalembedding@001:predict
 ```
 {
   "instances": [
@@ -40,7 +42,27 @@ Following is the API Request Payload. We have kept the dimension to be the minim
   }
 }
 ```
-
+The response would be a an array of numbers, similar to following 
+```
+{
+  "predictions": [
+    {
+      "imageEmbedding": [
+        0.00262696808,
+        -0.00198890246,
+        0.0152047109,
+        -0.0103145819,
+        [...]
+        0.0324628279,
+        0.0284924973,
+        0.011650892,
+        -0.00452344026
+      ]
+    }
+  ],
+  "deployedModelId": "DEPLOYED_MODEL_ID"
+}
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDE1MDYyMjI1LDc2MTgxMDAwNF19
+eyJoaXN0b3J5IjpbLTE3ODIxNzY1OTYsNzYxODEwMDA0XX0=
 -->
