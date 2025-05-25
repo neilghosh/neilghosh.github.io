@@ -1,0 +1,23 @@
+<div class="sidebar">
+  <h3>Posts by Year</h3>
+  <ul class="sidebar-years">
+    {% assign posts_by_year = site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
+    {% assign current_year = page.date | date: '%Y' %}
+    {% for year in posts_by_year %}
+      <li>
+        <details {% if year.name == current_year %}open{% endif %}>
+          <summary><strong>{{ year.name }}</strong></summary>
+          <ul>
+            {% for post in year.items %}
+              <li>
+                <a href="{{ post.url }}"{% if post.url == page.url %} class="active-post"{% endif %}>
+                  {{ post.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </details>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
