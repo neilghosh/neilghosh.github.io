@@ -4,11 +4,11 @@ title: "Make API Development faster Using Postman"
 description: ""
 ---
 
-[Postman](https://www.postman.com/) is by far the most popular (discounting `curl`) API testing tool used by developers all over the world. There are other tools like [insomnia](https://insomnia.rest/) which also I really like but Postman ts probably the most complete and others have a lot to catch up.
+[Postman](https://www.postman.com/) is by far the most popular (discounting `curl`) API testing tool used by developers all over the world. There are other tools like [insomnia](https://insomnia.rest/) which also I really like but Postman is probably the most complete and others have a lot to catch up.
 
-In addition to be merely able to do CRUD API calls like any other rest cients, it allowes Environments to actually save variables that can be used in multiple APIs and can have different values for deferent environments.
+In addition to be merely able to do CRUD API calls like any other rest clients, it allows Environments to actually save variables that can be used in multiple APIs and can have different values for different environments.
 
-For example, of you are testing your API in your local machine and also the same APIs are occasionally tested in your test enviornment as well then insread of you maintaining two set of API contract, you can just use the hostname as a environment variable. 
+For example, if you are testing your API in your local machine and also the same APIs are occasionally tested in your test environment as well then instead of you maintaining two set of API contract, you can just use the hostname as a environment variable. 
 
 You can have the following environment 
 
@@ -28,7 +28,7 @@ At the run time, depending on the selected environment it substitutes the variab
 
 ### Setting the variables at run time.
 
-Sometimes you need to feed the output of one API to another. In that case you may  use the "Test" tab where you can write script to extract values from the outpit of any API and set a environment variable which can be used as inpout to another API call. For example any auth API gives the following response containing the auth token which can be used in subsequent API calls.
+Sometimes you need to feed the output of one API to another. In that case you may  use the "Test" tab where you can write script to extract values from the output of any API and set a environment variable which can be used as input to another API call. For example any auth API gives the following response containing the auth token which can be used in subsequent API calls.
 
 ```
 {
