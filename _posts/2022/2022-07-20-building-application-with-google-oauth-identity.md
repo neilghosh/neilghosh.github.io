@@ -40,7 +40,7 @@ const authorizationUrl = oauth2Client.generateAuthUrl({
 
 ![Consent Screen](/assets/2022/consent-screen.png) 
 
-Documentation for writting server side web apps with Google OAuth [is here](https://developers.google.com/identity/protocols/oauth2/web-server)
+Documentation for writing server side web apps with Google OAuth [is here](https://developers.google.com/identity/protocols/oauth2/web-server)
 
 Finally, once the page is redirected to your app you can get hold of the access token and establish a session. In future articles, we can discuss the session handling and how using this access token further calls can be made to Google Services i.e. Google Drive and Google Photos.
 
