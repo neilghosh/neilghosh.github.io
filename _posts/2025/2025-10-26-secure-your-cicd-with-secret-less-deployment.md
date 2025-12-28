@@ -2,6 +2,7 @@
 layout: post
 title: "Secure your CI/CD with Secret less deployment"
 date: 2025-10-26
+description: Learn how to deploy to Azure without storing passwords using OIDC Federated Identity, eliminating the need for long-lived secrets in your CI/CD pipelines.
 categories: [CI/CD, Security, DevOps]
 ---
 
