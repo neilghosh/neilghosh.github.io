@@ -2,6 +2,7 @@
 layout: post
 title: Run your own ChatGPT
 date: 2025-12-28
+description: Learn how to run large language models locally on your computer using Ollama, including Gemma, Qwen, and other models, with web UI and CLI options for privacy and cost-free AI assistance.
 categories:
   - LLM
 ---
@@ -80,7 +81,7 @@ docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-
 
 Once the docker container runs, just point to http://localhost:3000/
 
-![[opem-ui.png]]
+![Open WebUI Interface](/assets/2025/ollama-open-webui.png)
 
 You could also use the API. 
 
@@ -142,11 +143,11 @@ models:
 
 It will use the corresponding model for the action mentioned in the config 
 
-![[continue-chat.png]]
+![Continue Chat in VS Code](/assets/2025/vscode-continue-chat.png)
 
 If you see it asking API keys of subscription based APIs, you may have to double check if local config is enabled for continue plugin.
 
-![[continue-config.png]]
+![Continue Plugin Configuration](/assets/2025/vscode-continue-config.png)
 
 For CLI fans coding, there is a continue cli as well which behaves like copilot-cli or gemini-cli.
 
@@ -154,7 +155,7 @@ For CLI fans coding, there is a continue cli as well which behaves like copilot-
 npm install -g @continuedev/cli
 ```
 
-![[contonue-cli.png]]
+![Continue CLI in Terminal](/assets/2025/continue-cli-terminal.png)
 
 You can at any time list the models that are downloaded and running currently. If a model is not actively used, it does not really show up in `ollama ps`
 
