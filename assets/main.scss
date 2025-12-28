@@ -20,7 +20,7 @@ main {
 
 .sidebar-years a {
   font-size: 0.92em;
-  color: #3366cc;
+  color: var(--sidebar-link);
   text-decoration: none;
   display: block;
   padding: 2px 0 2px 8px;
@@ -29,13 +29,13 @@ main {
 }
 
 .sidebar-years a:hover {
-  background: #f0f4fa;
-  color: #1a237e;
+  background: var(--sidebar-hover-bg);
+  color: var(--sidebar-hover-text);
 }
 
 .sidebar-years a.active-post {
-  background: #e3eafc;
-  color: #0d47a1;
+  background: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text);
   font-weight: bold;
 }
 

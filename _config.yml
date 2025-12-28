@@ -18,8 +18,10 @@ sass:
   sass_dir: _sass
   style: compressed
   
+# Theme
 remote_theme: jekyll/minima
-# Gems
+
+# Plugins
 plugins:
   - jekyll-feed
   - jekyll-paginate

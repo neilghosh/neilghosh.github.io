@@ -1,13 +1,5 @@
-// Colors
-$default-color: #555;
-$default-shade: #353535;
-$default-tint: #aaa;
-$grey-1: #979797;
-$grey-2: #e5e5e5;
-$grey-3: #f9f9f9;
-$blue: #4a9ae1;
-$shadow-color: rgba(0, 0, 0, .2);
-$code-color: #bf616a;
+// Dark mode support via CSS custom properties
+// Automatically switches based on system preference (prefers-color-scheme)
 
 // Fonts
 $serif-primary: 'Libre Baskerville', 'Times New Roman', Times, serif;
@@ -15,6 +7,49 @@ $serif-secondary: Palatino, 'Palatino LT STD', 'Palatino Linotype', 'Book Antiqu
 $sans-serif: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
 $monospaced: Menlo, Monaco, monospace;
 
+// Light theme (default)
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: #555;
+  --text-shade: #353535;
+  --text-tint: #aaa;
+  --grey-1: #979797;
+  --grey-2: #e5e5e5;
+  --link-color: #4a9ae1;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --code-bg: #e5e5e5;
+  --code-text: #3B3228;
+  --blockquote-border: #e5e5e5;
+  --sidebar-link: #3366cc;
+  --sidebar-hover-bg: #f0f4fa;
+  --sidebar-hover-text: #1a237e;
+  --sidebar-active-bg: #e3eafc;
+  --sidebar-active-text: #0d47a1;
+}
+
+// Dark theme (activates based on system preference)
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1e1e1e;
+    --text-color: #ddd;
+    --text-shade: #fff;
+    --text-tint: #888;
+    --grey-1: #666;
+    --grey-2: #333;
+    --link-color: #6db3f2;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --code-bg: #2d2d2d;
+    --code-text: #ddd;
+    --blockquote-border: #444;
+    --sidebar-link: #6db3f2;
+    --sidebar-hover-bg: #2d2d2d;
+    --sidebar-hover-text: #fff;
+    --sidebar-active-bg: #3d3d3d;
+    --sidebar-active-text: #fff;
+  }
+}
+
+// Mixins
 @mixin box-sizing($type: border-box) {
   -webkit-box-sizing: $type;
      -moz-box-sizing: $type;
