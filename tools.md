@@ -11,8 +11,8 @@ A collection of web-based tools and applications I've built to solve everyday pr
 
 ## Audio & Video Tools
 
-- **[Record Audio](record-audio/index.html)**  
-  Browser-based audio recording tool perfect for microphone testing, voice notes, and quick recordings. No installation required.
+- **[Audio & Video Recorder](record-audio/index.html)**  
+  Browser-based audio and video recording tool perfect for microphone testing, voice notes, video recordings, and quick captures. No installation required.
 
 - **[Video Tiles](https://neilghosh.com/video-tiles/)**  
   Watch multiple YouTube videos simultaneously in a single browser window. Great for comparing content or monitoring multiple streams.
