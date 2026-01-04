@@ -68,6 +68,16 @@ bundle exec jekyll serve
 JEKYLL_ENV=production bundle exec jekyll build
 ```
 
+## Git & Publishing Guidelines
+
+**CRITICAL**: Never commit or push changes unless the user explicitly requests it with commands like:
+- "commit and push"
+- "publish" 
+- "push to GitHub"
+- "deploy"
+
+Always make changes and let the user review them locally first. Use the local verification workflow to test changes before any git operations.
+
 ## Local Verification Workflow for Agents
 
 After making post improvements, verify changes locally:

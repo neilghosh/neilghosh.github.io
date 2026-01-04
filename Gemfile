@@ -11,10 +11,10 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 4.4"
+gem "jekyll", "~> 4.2.0"
 
-# Minima 3.0 with dark mode support (from GitHub, not released to RubyGems yet)
-gem "minima", github: "jekyll/minima", branch: "master"
+# Use the stable minima theme from RubyGems
+gem "minima", "~> 2.5"
 gem "jekyll-remote-theme"
 gem "jekyll-paginate"
 

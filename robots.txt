@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.neilghosh.com/sitemap.xml
+
+# Block crawling of draft/development files
+Disallow: /_*
+Disallow: /assets/main.scss

@@ -4,6 +4,50 @@
 
   {% seo %}
 
+  <!-- Additional SEO Meta Tags -->
+  <meta name="author" content="{{ site.author.name }}">
+  {% if page.excerpt %}
+    <meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
+  {% elsif page.description %}
+    <meta name="description" content="{{ page.description }}">
+  {% elsif site.description %}
+    <meta name="description" content="{{ site.description }}">
+  {% endif %}
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+  {% if page.description %}
+    <meta property="og:description" content="{{ page.description }}">
+  {% elsif page.excerpt %}
+    <meta property="og:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
+  {% else %}
+    <meta property="og:description" content="{{ site.description }}">
+  {% endif %}
+  {% if page.image %}
+    <meta property="og:image" content="{{ page.image | absolute_url }}">
+  {% else %}
+    <meta property="og:image" content="{{ '/assets/favicon-32x32.png' | absolute_url }}">
+  {% endif %}
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:url" content="{{ page.url | absolute_url }}">
+  <meta property="twitter:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+  {% if page.description %}
+    <meta property="twitter:description" content="{{ page.description }}">
+  {% elsif page.excerpt %}
+    <meta property="twitter:description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
+  {% else %}
+    <meta property="twitter:description" content="{{ site.description }}">
+  {% endif %}
+  {% if page.image %}
+    <meta property="twitter:image" content="{{ page.image | absolute_url }}">
+  {% else %}
+    <meta property="twitter:image" content="{{ '/assets/favicon-32x32.png' | absolute_url }}">
+  {% endif %}
+
   <!-- CSS -->
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">

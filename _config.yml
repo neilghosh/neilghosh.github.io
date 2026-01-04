@@ -27,6 +27,13 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   - jekyll-remote-theme
+  - jekyll-sitemap
+
+# Author info for SEO
+author:
+  name: "Neil Ghosh"
+  email: "neil.ghosh@gmail.com"
+  twitter: "neilghosh"
 
 # Permalinks
 permalink: /:year/:month/:title.html

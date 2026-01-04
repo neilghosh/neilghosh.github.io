@@ -2,10 +2,41 @@
 layout: default
 ---
 
-<div class="post">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ page.title }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.author.name }}"
+  },
+  "datePublished": "{{ page.date | date: "%Y-%m-%d" }}",
+  "dateModified": "{{ page.date | date: "%Y-%m-%d" }}",
+  {% if page.description %}
+  "description": "{{ page.description }}",
+  {% elsif page.excerpt %}
+  "description": "{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}",
+  {% endif %}
+  {% if page.image %}
+  "image": "{{ page.image | absolute_url }}",
+  {% endif %}
+  "url": "{{ page.url | absolute_url }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "{{ site.author.name }}"
+  }
+}
+</script>
+
+<article class="post">
   <div class="post-info">
     {% if page.date %}
-      <time datetime="{{ page.date }}">{{ page.date | date: "%B %d, %Y" }}</time>
+      <time datetime="{{ page.date | date: "%Y-%m-%d" }}">{{ page.date | date: "%B %d, %Y" }}</time>
     {% endif %}
   </div>
 
@@ -14,4 +45,4 @@ layout: default
 
   {{ content }}
 
-</div>
+</article>
