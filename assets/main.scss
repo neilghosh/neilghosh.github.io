@@ -132,6 +132,24 @@ main {
   font-size: 1.5rem !important; /* Reduced from 2rem */
 }
 
+/* Fix Navigation Overlap Issue */
+body {
+  padding-top: 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+}
+
+main {
+  margin-top: 1rem;
+}
+
+/* Ensure featured projects don't overlap with nav */
+.featured-projects {
+  margin-top: 1rem;
+}
+
 /* Make titles more proportional on mobile */
 @media (max-width: 768px) {
   .post-title {
@@ -140,6 +158,14 @@ main {
   
   .catalogue-title {
     font-size: 1.25rem !important;
+  }
+
+  .nav {
+    margin-bottom: 1.5rem;
+  }
+  
+  main {
+    margin-top: 0.5rem;
   }
 }
 
