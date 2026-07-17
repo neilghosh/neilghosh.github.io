@@ -2,6 +2,23 @@
 layout: default
 ---
 
+<div class="featured-projects">
+  <h2>🚀 Featured Projects</h2>
+  <div class="project-grid">
+    <a href="https://stargazing.web.app" class="project-card" target="_blank">
+      <h3>🌟 Stargazing App</h3>
+      <p>Real-time astronomical events and Indian calendar</p>
+    </a>
+    <a href="https://newscast.web.app" class="project-card" target="_blank">
+      <h3>📰 AI News Podcast</h3>
+      <p>Personalized news curation with AI voices</p>
+    </a>
+  </div>
+  <div class="view-all">
+    <a href="{{ '/tools' | prepend: site.baseurl }}">View All Apps →</a>
+  </div>
+</div>
+
 <div class="catalogue">
   {% for post in paginator.posts %}
     <a href="{{ post.url | prepend: site.baseurl }}" class="catalogue-item">

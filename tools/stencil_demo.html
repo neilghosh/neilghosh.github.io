@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNN Feature Map Simulator</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-panel: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-green: #10b981;
+            --cell-off: #0f172a;
+            --cell-on: #e2e8f0;
+            --border-color: #334155;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 { margin-bottom: 5px; color: var(--accent-blue); }
+        p.subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem; }
+
+        .dashboard {
+            background-color: var(--bg-panel);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label { font-weight: bold; color: var(--accent-blue); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;}
+        
+        select {
+            padding: 10px 15px;
+            font-size: 1rem;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            border: 1px solid var(--accent-blue);
+            border-radius: 6px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .visualization {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .grid-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h3 { margin: 0; font-size: 1.1rem; color: var(--text-main); }
+
+        .grid {
+            display: grid;
+            gap: 2px;
+            background-color: var(--border-color);
+            padding: 2px;
+            border-radius: 6px;
+        }
+
+        .grid-5 { grid-template-columns: repeat(5, 40px); grid-template-rows: repeat(5, 40px); }
+        .grid-3 { grid-template-columns: repeat(3, 40px); grid-template-rows: repeat(3, 40px); }
+
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            background-color: var(--cell-off);
+        }
+
+        /* Image States */
+        .cell.img-on { background-color: var(--cell-on); box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+        
+        /* Stencil States */
+        .cell.stencil-pos { background-color: var(--accent-blue); color: var(--bg-dark); }
+        .cell.stencil-neg { background-color: var(--cell-off); color: var(--text-muted); font-size: 0.9rem;}
+
+        /* Output States */
+        .cell.out-match { background-color: var(--accent-green); color: white; box-shadow: 0 0 15px var(--accent-green); transform: scale(1.05); z-index: 10;}
+
+        .arrow { font-size: 2rem; color: var(--text-muted); }
+
+        .explanation {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 0 8px 8px 0;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .explanation strong { color: var(--accent-green); }
+
+    </style>
+</head>
+<body>
+
+    <h1>Deep Learning: Match vs. Mismatch</h1>
+    <p class="subtitle">Interactive Convolution & Feature Map Generation</p>
+
+    <div class="dashboard">
+        <div class="controls">
+            <div class="control-group">
+                <label for="imageSelect">1. Patient Image (Input)</label>
+                <select id="imageSelect" onchange="runSimulation()">
+                    <option value="vertical">Vertical Blood Vessel (Left)</option>
+                    <option value="horizontal">Horizontal Tissue (Middle)</option>
+                    <option value="cross">Cross Junction (+)</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="stencilSelect">2. AI Stencil (Filter)</label>
+                <select id="stencilSelect" onchange="runSimulation()">
+                    <option value="vertical">Vertical Edge Detector</option>
+                    <option value="horizontal">Horizontal Edge Detector</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="visualization">
+            <div class="grid-container">
+                <h3>Raw Image (5x5)</h3>
+                <div class="grid grid-5" id="imageGrid"></div>
+            </div>
+
+            <div class="arrow">➜</div>
+
+            <div class="grid-container">
+                <h3>The Stencil (3x3)</h3>
+                <div class="grid grid-3" id="stencilGrid"></div>
+            </div>
+
+            <div class="arrow">➜</div>
+
+            <div class="grid-container">
+                <h3>Feature Map (Output)</h3>
+                <div class="grid grid-3" id="outputGrid"></div>
+            </div>
+        </div>
+
+        <div class="explanation" id="explanationText">
+            Select an image and a stencil to see how the AI extracts features.
+        </div>
+    </div>
+
+    <script>
+        // Data Definitions
+        const images = {
+            vertical: [
+                [0, 1, 0, 0, 0],
+                [0, 1, 0, 0, 0],
+                [0, 1, 0, 0, 0],
+                [0, 1, 0, 0, 0],
+                [0, 1, 0, 0, 0]
+            ],
+            horizontal: [
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [1, 1, 1, 1, 1],
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0]
+            ],
+            cross: [
+                [0, 0, 1, 0, 0],
+                [0, 0, 1, 0, 0],
+                [1, 1, 1, 1, 1],
+                [0, 0, 1, 0, 0],
+                [0, 0, 1, 0, 0]
+            ]
+        };
+
+        const stencils = {
+            vertical: [
+                [-1, 2, -1],
+                [-1, 2, -1],
+                [-1, 2, -1]
+            ],
+            horizontal: [
+                [-1, -1, -1],
+                [ 2,  2,  2],
+                [-1, -1, -1]
+            ]
+        };
+
+        // DOM Elements
+        const elImageGrid = document.getElementById('imageGrid');
+        const elStencilGrid = document.getElementById('stencilGrid');
+        const elOutputGrid = document.getElementById('outputGrid');
+        const elExplanation = document.getElementById('explanationText');
+
+        // Render Grids
+        function renderGrid(container, data, type) {
+            container.innerHTML = '';
+            for (let r = 0; r < data.length; r++) {
+                for (let c = 0; c < data[r].length; c++) {
+                    const cell = document.createElement('div');
+                    cell.classList.add('cell');
+                    const val = data[r][c];
+
+                    if (type === 'image') {
+                        if (val === 1) cell.classList.add('img-on');
+                    } else if (type === 'stencil') {
+                        cell.innerText = val > 0 ? '+'+val : val;
+                        if (val > 0) cell.classList.add('stencil-pos');
+                        else cell.classList.add('stencil-neg');
+                    } else if (type === 'output') {
+                        // Math logic: A perfect line match yields a score of 6. We threshold at 4.
+                        if (val >= 4) cell.classList.add('out-match');
+                    }
+                    container.appendChild(cell);
+                }
+            }
+        }
+
+        // Convolution Logic
+        function runSimulation() {
+            const imgKey = document.getElementById('imageSelect').value;
+            const stencilKey = document.getElementById('stencilSelect').value;
+            
+            const img = images[imgKey];
+            const stencil = stencils[stencilKey];
+            
+            // 1. Render Inputs
+            renderGrid(elImageGrid, img, 'image');
+            renderGrid(elStencilGrid, stencil, 'stencil');
+
+            // 2. Calculate Convolution (3x3 output from 5x5 input)
+            let output = [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0]
+            ];
+            let matchCount = 0;
+
+            for (let r = 0; r < 3; r++) {
+                for (let c = 0; c < 3; c++) {
+                    let sum = 0;
+                    // Multiply 3x3 patch
+                    for (let i = 0; i < 3; i++) {
+                        for (let j = 0; j < 3; j++) {
+                            sum += img[r + i][c + j] * stencil[i][j];
+                        }
+                    }
+                    output[r][c] = sum;
+                    if (sum >= 4) matchCount++;
+                }
+            }
+
+            // 3. Render Output
+            renderGrid(elOutputGrid, output, 'output');
+
+            // 4. Update Explanation Text
+            if (matchCount > 0) {
+                elExplanation.innerHTML = `<strong>Match Detected!</strong> The AI slid the stencil over the image and found a matching mathematical pattern. The bright green cells on the Feature Map show exactly <em>where</em> the AI found the structure.`;
+            } else {
+                elExplanation.innerHTML = `<strong>No Match.</strong> The AI slid the stencil over the entire image, but the shapes clashed. Because the patterns do not align, the output Feature Map remains completely black (ignoring the noise).`;
+            }
+        }
+
+        // Initialize on load
+        window.onload = runSimulation;
+    </script>
+</body>
+</html>

@@ -1,47 +1,651 @@
-<html>
-    	<body>
-    		<audio controls autoplay></audio>
-    		<script type="text/javascript" src="recorder.js"> </script>
-                    <fieldset><legend>RECORD AUDIO</legend>
-    		<input onclick="startRecording()" type="button" value="start recording" />
-    		<input onclick="stopRecording()" type="button" value="stop recording and play" />
-                    </fieldset>
-    		<script>
-    			var onFail = function(e) {
-    				console.log('Rejected!', e);
-    			};
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio & Video Recorder - Neil Ghosh's Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .recorder-section {
+            margin-bottom: 30px;
+        }
+        .controls {
+            margin: 15px 0;
+        }
+        button {
+            background-color: #007cba;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #005a87;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .recording {
+            background-color: #dc3545 !important;
+        }
+        .recording:hover {
+            background-color: #c82333 !important;
+        }
+        audio, video {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        video {
+            max-height: 400px;
+            background: #000;
+        }
+        .status {
+            font-weight: bold;
+            color: #007cba;
+            margin: 10px 0;
+        }
+        .error {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .download-link {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin: 5px;
+        }
+        .download-link:hover {
+            background-color: #218838;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #007cba;
+            padding-bottom: 10px;
+        }
+        .timer {
+            font-size: 18px;
+            font-weight: bold;
+            color: #dc3545;
+            margin: 10px 0;
+        }
+        .nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            color: #007cba;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="../../">← Back to Blog</a> | <a href="../">Tools</a>
+    </div>
 
-    			var onSuccess = function(s) {
-    				var context = new webkitAudioContext();
-    				var mediaStreamSource = context.createMediaStreamSource(s);
-    				recorder = new Recorder(mediaStreamSource);
-    				recorder.record();
+    <h1>🎙️ Audio & Video Recorder</h1>
+    
+    <div class="container">
+        <div class="recorder-section">
+            <h2>🎵 Audio Recorder</h2>
+            <div class="status" id="audioStatus">Ready to record audio</div>
+            <div class="timer" id="audioTimer" style="display: none;">00:00</div>
+            <div class="controls">
+                <button id="startAudio" onclick="startAudioRecording()">🎙️ Start Audio Recording</button>
+                <button id="stopAudio" onclick="stopAudioRecording()" disabled>⏹️ Stop Recording</button>
+                <button id="clearAudio" onclick="clearAudio()">🗑️ Clear</button>
+            </div>
+            <audio id="audioPlayback" controls style="display: none;"></audio>
+            <div id="audioDownloads"></div>
+        </div>
+    </div>
 
-    				// audio loopback
-    				// mediaStreamSource.connect(context.destination);
-    			}
+    <div class="container">
+        <div class="recorder-section">
+            <h2>🎥 Video Recorder</h2>
+            <div class="status" id="videoStatus">Ready to record video</div>
+            <div class="timer" id="videoTimer" style="display: none;">00:00</div>
+            <div class="controls">
+                <button id="startVideo" onclick="startVideoRecording()">🎥 Start Video Recording</button>
+                <button id="stopVideo" onclick="stopVideoRecording()" disabled>⏹️ Stop Recording</button>
+                <button id="clearVideo" onclick="clearVideo()">🗑️ Clear</button>
+            </div>
+            <video id="videoPreview" autoplay muted style="display: none;"></video>
+            <video id="videoPlayback" controls style="display: none;"></video>
+            <div id="videoDownloads"></div>
+        </div>
+    </div>
 
-    			window.URL = window.URL || window.webkitURL;
-    			navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    <div class="container">
+        <h2>📋 Instructions</h2>
+        <ul>
+            <li><strong>Audio Recording:</strong> Records high-quality WAV audio from your microphone</li>
+            <li><strong>Video Recording:</strong> Records MP4 video with audio from your camera and microphone</li>
+            <li><strong>Browser Support:</strong> Works in modern browsers that support MediaRecorder API</li>
+            <li><strong>Privacy:</strong> All recording happens locally in your browser - nothing is uploaded</li>
+            <li><strong>Download:</strong> Click the download links to save your recordings</li>
+        </ul>
+    </div>
 
-    			var recorder;
-    			var audio = document.querySelector('audio');
+    <div id="errorContainer"></div>
 
-    			function startRecording() {
-    				if (navigator.getUserMedia) {
-    					navigator.getUserMedia({audio: true}, onSuccess, onFail);
-    				} else {
-    					console.log('navigator.getUserMedia not present');
-    				}
-    			}
+    <script>
+        // Global variables
+        let audioRecorder = null;
+        let videoRecorder = null;
+        let audioStream = null;
+        let videoStream = null;
+        let audioChunks = [];
+        let videoChunks = [];
+        let audioStartTime = null;
+        let videoStartTime = null;
+        let audioTimerInterval = null;
+        let videoTimerInterval = null;
 
-    			function stopRecording() {
-    				recorder.stop();
-    				recorder.exportWAV(function(s) {
-                                
-                                 	audio.src = window.URL.createObjectURL(s);
-    				});
-    			}
-    		</script>
-    	</body>
-    </html>
+        // Error handling
+        function showError(message) {
+            const errorContainer = document.getElementById('errorContainer');
+            errorContainer.innerHTML = `<div class="error">❌ ${message}</div>`;
+            setTimeout(() => {
+                errorContainer.innerHTML = '';
+            }, 5000);
+        }
+
+        // Timer functions
+        function startTimer(type) {
+            const timerElement = document.getElementById(`${type}Timer`);
+            const startTime = type === 'audio' ? audioStartTime : videoStartTime;
+            
+            timerElement.style.display = 'block';
+            
+            const interval = setInterval(() => {
+                const elapsed = Date.now() - startTime;
+                const seconds = Math.floor(elapsed / 1000);
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = seconds % 60;
+                
+                timerElement.textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+            }, 1000);
+
+            if (type === 'audio') {
+                audioTimerInterval = interval;
+            } else {
+                videoTimerInterval = interval;
+            }
+        }
+
+        function stopTimer(type) {
+            const timerElement = document.getElementById(`${type}Timer`);
+            const interval = type === 'audio' ? audioTimerInterval : videoTimerInterval;
+            
+            if (interval) {
+                clearInterval(interval);
+                if (type === 'audio') {
+                    audioTimerInterval = null;
+                } else {
+                    videoTimerInterval = null;
+                }
+            }
+            timerElement.style.display = 'none';
+        }
+
+        // Check supported formats
+        function getSupportedAudioFormat() {
+            const formats = [
+                'audio/webm;codecs=opus',
+                'audio/webm',
+                'audio/mp4',
+                'audio/wav',
+                'audio/ogg;codecs=opus'
+            ];
+            
+            for (let format of formats) {
+                if (MediaRecorder.isTypeSupported(format)) {
+                    return format;
+                }
+            }
+            return 'audio/webm'; // fallback
+        }
+        
+        function getSupportedVideoFormat() {
+            const formats = [
+                'video/webm;codecs=vp9,opus',
+                'video/webm;codecs=vp8,opus',
+                'video/webm;codecs=h264,opus',
+                'video/webm',
+                'video/mp4;codecs=h264,aac',
+                'video/mp4'
+            ];
+            
+            for (let format of formats) {
+                if (MediaRecorder.isTypeSupported(format)) {
+                    return format;
+                }
+            }
+            return 'video/webm'; // fallback
+        }
+
+        // Audio recording functions
+        async function startAudioRecording() {
+            try {
+                // Check available devices first
+                const deviceInfo = await checkDevices();
+                
+                if (!deviceInfo.hasAudio) {
+                    throw new Error('No audio input devices found. Please connect a microphone.');
+                }
+                
+                // Try different audio constraints
+                const constraintOptions = [
+                    // High quality with specific device
+                    {
+                        audio: {
+                            deviceId: deviceInfo.audioDevices[0]?.deviceId ? { exact: deviceInfo.audioDevices[0].deviceId } : undefined,
+                            echoCancellation: true,
+                            noiseSuppression: true,
+                            autoGainControl: true,
+                            sampleRate: 44100,
+                            channelCount: 2
+                        }
+                    },
+                    // Basic fallback
+                    {
+                        audio: {
+                            echoCancellation: true,
+                            noiseSuppression: true,
+                            autoGainControl: true
+                        }
+                    },
+                    // Minimal constraints
+                    {
+                        audio: true
+                    }
+                ];
+                
+                let stream = null;
+                let lastError = null;
+                
+                for (let i = 0; i < constraintOptions.length; i++) {
+                    try {
+                        console.log(`Trying audio constraint option ${i + 1}:`, constraintOptions[i]);
+                        stream = await navigator.mediaDevices.getUserMedia(constraintOptions[i]);
+                        console.log('Audio success with constraint option', i + 1);
+                        break;
+                    } catch (err) {
+                        console.log(`Audio constraint option ${i + 1} failed:`, err.message);
+                        lastError = err;
+                        continue;
+                    }
+                }
+                
+                if (!stream) {
+                    throw new Error(`Failed to access microphone: ${lastError?.message || 'Unknown error'}`);
+                }
+                
+                audioStream = stream;
+                
+                const supportedFormat = getSupportedAudioFormat();
+                console.log('Using audio format:', supportedFormat);
+                
+                audioRecorder = new MediaRecorder(audioStream, {
+                    mimeType: supportedFormat
+                });
+                audioChunks = [];
+                
+                audioRecorder.ondataavailable = event => {
+                    if (event.data.size > 0) {
+                        audioChunks.push(event.data);
+                    }
+                };
+                
+                audioRecorder.onstop = () => {
+                    const mimeType = audioRecorder.mimeType || getSupportedAudioFormat();
+                    const audioBlob = new Blob(audioChunks, { type: mimeType });
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    
+                    const playback = document.getElementById('audioPlayback');
+                    playback.src = audioUrl;
+                    playback.style.display = 'block';
+                    
+                    // Create download link with correct extension
+                    const timestamp = new Date().toISOString().slice(0, 19).replace(/[:]/g, '-');
+                    let extension = 'webm';
+                    if (mimeType.includes('mp4')) extension = 'mp4';
+                    else if (mimeType.includes('wav')) extension = 'wav';
+                    else if (mimeType.includes('ogg')) extension = 'ogg';
+                    
+                    const filename = `audio-recording-${timestamp}.${extension}`;
+                    createDownloadLink('audioDownloads', audioUrl, filename);
+                    
+                    document.getElementById('audioStatus').textContent = 'Recording complete! ✅';
+                };
+                
+                audioRecorder.start();
+                audioStartTime = Date.now();
+                startTimer('audio');
+                
+                document.getElementById('startAudio').disabled = true;
+                document.getElementById('startAudio').classList.add('recording');
+                document.getElementById('stopAudio').disabled = false;
+                document.getElementById('audioStatus').textContent = 'Recording audio... 🔴';
+                
+            } catch (err) {
+                showError(`Audio recording failed: ${err.message}`);
+            }
+        }
+
+        function stopAudioRecording() {
+            if (audioRecorder && audioRecorder.state === 'recording') {
+                audioRecorder.stop();
+                stopTimer('audio');
+                
+                if (audioStream) {
+                    audioStream.getTracks().forEach(track => track.stop());
+                    audioStream = null;
+                }
+                
+                document.getElementById('startAudio').disabled = false;
+                document.getElementById('startAudio').classList.remove('recording');
+                document.getElementById('stopAudio').disabled = true;
+            }
+        }
+
+        function clearAudio() {
+            if (audioRecorder) {
+                audioRecorder = null;
+            }
+            if (audioStream) {
+                audioStream.getTracks().forEach(track => track.stop());
+                audioStream = null;
+            }
+            stopTimer('audio');
+            
+            document.getElementById('audioPlayback').style.display = 'none';
+            document.getElementById('audioDownloads').innerHTML = '';
+            document.getElementById('audioStatus').textContent = 'Ready to record audio';
+            document.getElementById('startAudio').disabled = false;
+            document.getElementById('startAudio').classList.remove('recording');
+            document.getElementById('stopAudio').disabled = true;
+        }
+
+        // Device detection
+        async function checkDevices() {
+            try {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const videoDevices = devices.filter(device => device.kind === 'videoinput');
+                const audioDevices = devices.filter(device => device.kind === 'audioinput');
+                
+                console.log('Available video devices:', videoDevices.length);
+                console.log('Available audio devices:', audioDevices.length);
+                
+                return {
+                    hasVideo: videoDevices.length > 0,
+                    hasAudio: audioDevices.length > 0,
+                    videoDevices,
+                    audioDevices
+                };
+            } catch (err) {
+                console.error('Error checking devices:', err);
+                return { hasVideo: false, hasAudio: false, videoDevices: [], audioDevices: [] };
+            }
+        }
+
+        // Video recording functions
+        async function startVideoRecording() {
+            try {
+                // Check available devices first
+                const deviceInfo = await checkDevices();
+                
+                if (!deviceInfo.hasVideo) {
+                    throw new Error('No video input devices found. Please connect a camera.');
+                }
+                
+                if (!deviceInfo.hasAudio) {
+                    console.warn('No audio input devices found. Recording video without audio.');
+                }
+                
+                // Try different constraint combinations
+                const constraintOptions = [
+                    // High quality with specific device if available
+                    {
+                        video: {
+                            deviceId: deviceInfo.videoDevices[0]?.deviceId ? { exact: deviceInfo.videoDevices[0].deviceId } : undefined,
+                            width: { ideal: 1280, max: 1920 },
+                            height: { ideal: 720, max: 1080 },
+                            frameRate: { ideal: 30 }
+                        },
+                        audio: deviceInfo.hasAudio ? {
+                            deviceId: deviceInfo.audioDevices[0]?.deviceId ? { exact: deviceInfo.audioDevices[0].deviceId } : undefined,
+                            echoCancellation: true,
+                            noiseSuppression: true,
+                            autoGainControl: true
+                        } : false
+                    },
+                    // Medium quality fallback
+                    {
+                        video: {
+                            width: { ideal: 640 },
+                            height: { ideal: 480 },
+                            frameRate: { ideal: 15 }
+                        },
+                        audio: deviceInfo.hasAudio
+                    },
+                    // Basic fallback
+                    {
+                        video: true,
+                        audio: deviceInfo.hasAudio
+                    },
+                    // Video only if audio fails
+                    {
+                        video: true,
+                        audio: false
+                    }
+                ];
+                
+                let stream = null;
+                let lastError = null;
+                
+                for (let i = 0; i < constraintOptions.length; i++) {
+                    try {
+                        console.log(`Trying constraint option ${i + 1}:`, constraintOptions[i]);
+                        stream = await navigator.mediaDevices.getUserMedia(constraintOptions[i]);
+                        console.log('Success with constraint option', i + 1);
+                        break;
+                    } catch (err) {
+                        console.log(`Constraint option ${i + 1} failed:`, err.message);
+                        lastError = err;
+                        continue;
+                    }
+                }
+                
+                if (!stream) {
+                    throw new Error(`Failed to access camera/microphone: ${lastError?.message || 'Unknown error'}`);
+                }
+                
+                videoStream = stream;
+                
+                const preview = document.getElementById('videoPreview');
+                preview.srcObject = videoStream;
+                preview.style.display = 'block';
+                
+                const supportedFormat = getSupportedVideoFormat();
+                console.log('Using video format:', supportedFormat);
+                
+                videoRecorder = new MediaRecorder(videoStream, { 
+                    mimeType: supportedFormat
+                });
+                videoChunks = [];
+                
+                videoRecorder.ondataavailable = event => {
+                    if (event.data.size > 0) {
+                        videoChunks.push(event.data);
+                    }
+                };
+                
+                videoRecorder.onstop = () => {
+                    const mimeType = videoRecorder.mimeType || getSupportedVideoFormat();
+                    const videoBlob = new Blob(videoChunks, { type: mimeType });
+                    const videoUrl = URL.createObjectURL(videoBlob);
+                    
+                    const playback = document.getElementById('videoPlayback');
+                    playback.src = videoUrl;
+                    playback.style.display = 'block';
+                    
+                    // Hide preview
+                    const preview = document.getElementById('videoPreview');
+                    preview.style.display = 'none';
+                    preview.srcObject = null;
+                    
+                    // Create download link with correct extension
+                    const timestamp = new Date().toISOString().slice(0, 19).replace(/[:]/g, '-');
+                    let extension = 'webm';
+                    if (mimeType.includes('mp4')) extension = 'mp4';
+                    
+                    const filename = `video-recording-${timestamp}.${extension}`;
+                    createDownloadLink('videoDownloads', videoUrl, filename);
+                    
+                    document.getElementById('videoStatus').textContent = 'Recording complete! ✅';
+                };
+                
+                videoRecorder.start();
+                videoStartTime = Date.now();
+                startTimer('video');
+                
+                document.getElementById('startVideo').disabled = true;
+                document.getElementById('startVideo').classList.add('recording');
+                document.getElementById('stopVideo').disabled = false;
+                document.getElementById('videoStatus').textContent = 'Recording video... 🔴';
+                
+            } catch (err) {
+                showError(`Video recording failed: ${err.message}`);
+            }
+        }
+
+        function stopVideoRecording() {
+            if (videoRecorder && videoRecorder.state === 'recording') {
+                videoRecorder.stop();
+                stopTimer('video');
+                
+                if (videoStream) {
+                    videoStream.getTracks().forEach(track => track.stop());
+                    videoStream = null;
+                }
+                
+                document.getElementById('startVideo').disabled = false;
+                document.getElementById('startVideo').classList.remove('recording');
+                document.getElementById('stopVideo').disabled = true;
+            }
+        }
+
+        function clearVideo() {
+            if (videoRecorder) {
+                videoRecorder = null;
+            }
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+                videoStream = null;
+            }
+            stopTimer('video');
+            
+            document.getElementById('videoPreview').style.display = 'none';
+            document.getElementById('videoPreview').srcObject = null;
+            document.getElementById('videoPlayback').style.display = 'none';
+            document.getElementById('videoDownloads').innerHTML = '';
+            document.getElementById('videoStatus').textContent = 'Ready to record video';
+            document.getElementById('startVideo').disabled = false;
+            document.getElementById('startVideo').classList.remove('recording');
+            document.getElementById('stopVideo').disabled = true;
+        }
+
+        // Utility function to create download links
+        function createDownloadLink(containerId, url, filename) {
+            const container = document.getElementById(containerId);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.className = 'download-link';
+            link.textContent = `📥 Download ${filename}`;
+            container.appendChild(link);
+        }
+
+        // Check for browser compatibility and show supported formats
+        window.addEventListener('load', async () => {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                showError('Your browser does not support media recording. Please use a modern browser like Chrome, Firefox, or Safari.');
+                return;
+            }
+
+            if (!window.MediaRecorder) {
+                showError('Your browser does not support MediaRecorder API. Please use a modern browser.');
+                return;
+            }
+            
+            // Log supported formats for debugging
+            console.log('Supported audio format:', getSupportedAudioFormat());
+            console.log('Supported video format:', getSupportedVideoFormat());
+            
+            // Check available devices
+            const deviceInfo = await checkDevices();
+            
+            // Update status messages based on available devices
+            if (deviceInfo.hasAudio) {
+                document.getElementById('audioStatus').textContent = 
+                    `Ready to record audio (${getSupportedAudioFormat().split(';')[0]}) - ${deviceInfo.audioDevices.length} microphone(s) found`;
+            } else {
+                document.getElementById('audioStatus').textContent = 'No microphones detected';
+                document.getElementById('startAudio').disabled = true;
+            }
+            
+            if (deviceInfo.hasVideo) {
+                document.getElementById('videoStatus').textContent = 
+                    `Ready to record video (${getSupportedVideoFormat().split(';')[0]}) - ${deviceInfo.videoDevices.length} camera(s) found`;
+            } else {
+                document.getElementById('videoStatus').textContent = 'No cameras detected';
+                document.getElementById('startVideo').disabled = true;
+            }
+            
+            // Add refresh button if no devices found
+            if (!deviceInfo.hasAudio && !deviceInfo.hasVideo) {
+                const refreshBtn = document.createElement('button');
+                refreshBtn.textContent = '🔄 Refresh Devices';
+                refreshBtn.onclick = () => window.location.reload();
+                document.getElementById('errorContainer').appendChild(refreshBtn);
+            }
+        });
+    </script>
+</body>
+</html>

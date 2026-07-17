@@ -1,0 +1,32 @@
+<div class="sidebar">
+  <h3>Posts by Year</h3>
+  <ul class="sidebar-years">
+    {% assign posts_by_year = site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
+    {% assign current_year = page.date | date: '%Y' %}
+    {% assign latest_year = posts_by_year.first.name %}
+    {% for year in posts_by_year %}
+      <li>
+        <details {% if year.name == latest_year %}open{% endif %}>
+          <summary><strong>{{ year.name }}</strong></summary>
+          <ul>
+            {% for post in year.items %}
+              <li>
+                <a href="{{ post.url }}"{% if post.url == page.url %} class="active-post"{% endif %}>
+                  {{ post.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </details>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h3>Categories</h3>
+  <ul class="sidebar-categories">
+    <li><a href="{{ '/categories/programming' | prepend: site.baseurl }}">📝 Programming</a></li>
+    <li><a href="{{ '/categories/ai' | prepend: site.baseurl }}">🤖 AI & ML</a></li>
+    <li><a href="{{ '/categories/devops' | prepend: site.baseurl }}">⚙️ DevOps</a></li>
+    <li><a href="{{ '/categories/security' | prepend: site.baseurl }}">🔐 Security</a></li>
+  </ul>
+</div>
