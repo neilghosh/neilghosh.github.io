@@ -3,7 +3,7 @@ layout: post
 title: "20 Years on Reflextions ..."
 date: 2026-07-17
 categories: [Personal, Reflections]
-description: "Reflecting on a journey of 20 years..."
+description: "Twenty years ago today, I embarked on my first tech job. From Oracle Apps and Adobe Flex to GCP, Salesforce, and Microsoft, here is a chronological reflection of my 20-year career, the lessons learned, and the evolution of tech. Read more..."
 published: true
 ---
 
